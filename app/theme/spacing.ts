@@ -4,5 +4,8 @@ export const spacing = {
   n: 10,
   m: 15,
   l: 20,
+  lm: 25,
+  ll: 30,
   xl: 40,
+  borderRadius: 9,
 };

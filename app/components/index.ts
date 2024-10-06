@@ -1,5 +1,6 @@
 import {AnimatedBox, Box} from './Box';
 import {Button} from './Button';
+import {Header} from './Header';
 import {
   OnboardingCarousel,
   OnboardingFooter,
@@ -13,6 +14,7 @@ export {
   AnimatedBox,
   Box,
   Button,
+  Header,
   OnboardingCarousel,
   OnboardingFooter,
   OnboardingProgress,

@@ -1,10 +1,7 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {
-  OnboardingCarousel,
-  OnboardingFooter,
-  OnboardingProgress,
-  Screen,
-} from '../../components';
+import {OnboardingCarousel, OnboardingProgress, Screen} from '../../components';
+import {StackNavigation} from '../../navigators';
 import {IScroll, SCROLL_DEFAULT} from '../../utils';
 
 export const Onboarding = () => {
@@ -13,11 +10,13 @@ export const Onboarding = () => {
   const carouselIndex = (index: IScroll) => {
     setProgress(index);
   };
+  const navigation = useNavigation<StackNavigation>();
   return (
-    <Screen>
+    <Screen
+      buttonLabel="Get Started"
+      buttonOnPress={() => navigation.navigate('Verification')}>
       <OnboardingProgress progress={progress} />
       <OnboardingCarousel carouselIndex={carouselIndex} />
-      <OnboardingFooter />
     </Screen>
   );
 };

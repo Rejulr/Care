@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {Onboarding} from '../screens';
+import {Header} from '../components';
+import {Onboarding, Verification, VerificationStatus} from '../screens';
 import {AppStackParamList} from './AppStackParamList';
 export const AppStack = () => {
   const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -8,8 +9,24 @@ export const AppStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Onboarding"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {backgroundColor: 'white'},
+      }}>
       <Stack.Screen name="Onboarding" component={Onboarding} />
+
+      <Stack.Screen
+        name="Verification"
+        component={Verification}
+        options={{
+          headerShown: true,
+          headerShadowVisible: false,
+          headerTitle: '',
+          headerLeft: () => <Header />,
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen name="VerificationStatus" component={VerificationStatus} />
     </Stack.Navigator>
   );
 };
