@@ -1,3 +1,4 @@
+import { AuthModal } from './AuthModal';
 import {AnimatedBox, Box} from './Box';
 import {Button} from './Button';
 import {Header} from './Header';
@@ -14,6 +15,7 @@ export {
   AnimatedBox,
   Box,
   Button,
+  AuthModal,
   Header,
   OnboardingCarousel,
   OnboardingFooter,

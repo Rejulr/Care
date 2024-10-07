@@ -4,6 +4,7 @@ export const colors = {
   subLabel: '#9195A2',
   secondary1: '#F5ECDA',
   secondary1Light: '#FCF9F4',
+  socialButton: '#F4F6F8',
   //(^__^)
   secondary1Lighter: '#DDD4C4',
   secondary1Dark: '#625E57',

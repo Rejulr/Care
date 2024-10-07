@@ -1,22 +1,48 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {OnboardingCarousel, OnboardingProgress, Screen} from '../../components';
-import {StackNavigation} from '../../navigators';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
+import React, {useCallback, useRef, useState} from 'react';
+import {ICarouselInstance} from 'react-native-reanimated-carousel';
+import {
+  AuthModal,
+  OnboardingCarousel,
+  OnboardingProgress,
+  Screen,
+} from '../../components';
 import {IScroll, SCROLL_DEFAULT} from '../../utils';
 
 export const Onboarding = () => {
   const [progress, setProgress] = useState<IScroll>(SCROLL_DEFAULT);
+  let carouselRef = useRef<ICarouselInstance>();
 
   const carouselIndex = (index: IScroll) => {
     setProgress(index);
   };
-  const navigation = useNavigation<StackNavigation>();
+  const carousel = (
+    ref: React.MutableRefObject<ICarouselInstance | undefined>,
+  ) => {
+    carouselRef = ref;
+  };
+
+  const getStartedModalRef = useRef<BottomSheetModal>(null);
+
+  const openGetStartedModal = useCallback(() => {
+    console.log(progress.index);
+    if (progress.index === 2) {
+      getStartedModalRef.current?.present();
+    } else {
+      carouselRef.current?.next();
+    }
+  }, [progress.index]);
+
   return (
     <Screen
-      buttonLabel="Get Started"
-      buttonOnPress={() => navigation.navigate('Verification')}>
+      buttonLabel={progress.index === 2 ? 'Get Started' : 'Continue'}
+      buttonOnPress={openGetStartedModal}>
       <OnboardingProgress progress={progress} />
-      <OnboardingCarousel carouselIndex={carouselIndex} />
+      <OnboardingCarousel
+        carouselRef={carousel}
+        carouselIndex={carouselIndex}
+      />
+      <AuthModal bottomSheetModalRef={getStartedModalRef} />
     </Screen>
   );
 };

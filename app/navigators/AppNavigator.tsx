@@ -1,3 +1,4 @@
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
@@ -10,7 +11,9 @@ export const AppNavigator = () => {
 
   return (
     <NavigationContainer onReady={onNavigationReady}>
-      <AppStack />
+      <BottomSheetModalProvider>
+        <AppStack />
+      </BottomSheetModalProvider>
     </NavigationContainer>
   );
 };
