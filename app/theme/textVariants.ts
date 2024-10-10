@@ -10,9 +10,14 @@ export const textVariants = {
     fontSize: moderateScale(14),
     lineHeight: moderateScale(22),
   },
-  regularBold: {
+  semiBold: {
     fontFamily: 'WorkSans-SemiBold',
   },
+  medium: {
+    fontFamily: 'WorkSans-Medium',
+    fontSize: moderateScale(13),
+  },
+
   buttonLabel: {
     fontFamily: 'WorkSans-SemiBold',
     color: 'white',

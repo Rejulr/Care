@@ -1,16 +1,16 @@
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import SplashScreen from 'react-native-splash-screen';
 import {AppStack} from './AppStack';
+import { useAppStore } from '../data';
 
 export const AppNavigator = () => {
-  const onNavigationReady = () => {
-    SplashScreen.hide();
-  };
-
+  const {} = useAppStore();
   return (
-    <NavigationContainer onReady={onNavigationReady}>
-      <AppStack />
+    <NavigationContainer>
+      <BottomSheetModalProvider>
+        <AppStack />
+      </BottomSheetModalProvider>
     </NavigationContainer>
   );
 };

@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Dimensions} from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
+import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {useCarousel} from '../../../hooks';
 import {colors} from '../../../theme';
 import {carouselData, IScroll} from '../../../utils';
@@ -10,14 +10,21 @@ import {$container, $item, $labelContainer, $labelHeading} from './styles';
 
 type IOnboardingCarousel = {
   carouselIndex: (index: IScroll) => void;
+  carouselRef: (
+    ref: React.MutableRefObject<ICarouselInstance | undefined>,
+  ) => void;
 };
 
-export const OnboardingCarousel = ({carouselIndex}: IOnboardingCarousel) => {
+export const OnboardingCarousel = ({
+  carouselIndex,
+  carouselRef,
+}: IOnboardingCarousel) => {
   const {width} = Dimensions.get('window');
   const {onSnapToItem, scrollIndex} = useCarousel();
   const {secondary1, secondary2, secondary3} = colors;
   const CAROUSEL_ITEM_BACKGROUND_COLOR = [secondary1, secondary2, secondary3];
-
+  const carousel = useRef<any>();
+  carouselRef(carousel);
   useEffect(() => {
     carouselIndex(scrollIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,6 +33,7 @@ export const OnboardingCarousel = ({carouselIndex}: IOnboardingCarousel) => {
   return (
     <>
       <Carousel
+        ref={carousel}
         loop={false}
         autoPlayInterval={1500}
         width={width}

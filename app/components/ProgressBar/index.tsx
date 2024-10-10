@@ -25,7 +25,7 @@ export const ProgressBar = ({
     <Box
       style={{backgroundColor: containerBackgroundColor}}
       height={containerHeight}
-      width={'60%'}
+      width={'40%'}
       borderRadius={100}>
       <AnimatedBox
         borderRadius={100}
