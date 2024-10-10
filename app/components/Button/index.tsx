@@ -3,25 +3,31 @@ import {
   Gesture,
   GestureDetector,
   RectButton,
+  RectButtonProps,
 } from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import {Skottie} from 'react-native-skottie';
+import {Loader} from '../../assets/lottie';
 import {Box} from '../Box';
 import {Text} from '../Text';
-import {$button, $buttonContainer, $label} from './styles';
+import {$button, $buttonContainer, $label, $skottie} from './styles';
 
-type ButtonProps = {
+type ButtonProps = RectButtonProps & {
   onPress?: () => void;
   label: string;
+  isLoading?: boolean;
 };
 export const AnimatedButton = Animated.createAnimatedComponent(RectButton);
 
-export const Button = ({onPress, label}: ButtonProps) => {
+export const Button = ({onPress, isLoading, label, ...props}: ButtonProps) => {
   const scaleDown = useSharedValue<boolean>(false);
 
+  const isButtonEnabled =
+    props.enabled === undefined ? false : props.enabled ? false : true;
   const longPressGesture = Gesture.LongPress()
     .onBegin(() => {
       scaleDown.value = true;
@@ -38,9 +44,10 @@ export const Button = ({onPress, label}: ButtonProps) => {
             : withTiming(1, {duration: 250}),
         },
       ],
-      opacity: scaleDown.value
-        ? withTiming(0.9, {duration: 250})
-        : withTiming(1, {duration: 250}),
+      opacity:
+        scaleDown.value || isButtonEnabled
+          ? withTiming(isButtonEnabled ? 0.2 : 0.9, {duration: 250})
+          : withTiming(1, {duration: 250}),
 
       borderRadius: 10,
     };
@@ -48,10 +55,23 @@ export const Button = ({onPress, label}: ButtonProps) => {
   return (
     <Box style={$buttonContainer} overflow="hidden">
       <GestureDetector gesture={longPressGesture}>
-        <AnimatedButton style={[$button, buttonStyle]} onPress={onPress}>
-          <Text style={$label} variant="buttonLabel">
-            {label}
-          </Text>
+        <AnimatedButton
+          {...props}
+          style={[$button, buttonStyle]}
+          onPress={onPress}>
+          {isLoading ? (
+            <Skottie
+              style={$skottie}
+              resizeMode="cover"
+              source={Loader}
+              autoPlay={true}
+              loop={true}
+            />
+          ) : (
+            <Text style={$label} variant="buttonLabel">
+              {label}
+            </Text>
+          )}
         </AnimatedButton>
       </GestureDetector>
     </Box>

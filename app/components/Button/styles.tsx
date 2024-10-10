@@ -15,3 +15,7 @@ export const $label: TextStyle = {
   fontSize: moderateScale(17),
   letterSpacing: 1,
 };
+export const $skottie: TextStyle = {
+  height: 60,
+  width: 60,
+};

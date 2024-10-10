@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions, Pressable, ScrollView} from 'react-native';
 import {BounceInUp} from 'react-native-reanimated';
 import {FlatGrid} from 'react-native-super-grid';
@@ -17,12 +17,13 @@ import {
 } from '../../assets/svgs';
 import {AnimatedBox, Box, Text} from '../../components';
 import {Header} from '../../components/Verification';
+import {useAppStore} from '../../data';
 import {spacing} from '../../theme/spacing';
 import {moderateScale} from '../../utils';
 
 export const Specialty = () => {
+  const {specialty, addSpecialty, addSpecialtyStep} = useAppStore();
   const width = Dimensions.get('window').width - 38;
-  const [selected, setSelected] = useState<string>('');
   const ITEM = [
     {
       title: 'Cardiology',
@@ -82,16 +83,27 @@ export const Specialty = () => {
   ];
 
   const onPress = (title: string) => {
-    if (title === selected) {
-      setSelected('');
+    if (title === specialty) {
+      addSpecialty('');
     } else {
-      setSelected(title);
+      addSpecialty(title);
     }
   };
+  useEffect(() => {
+    addSpecialtyStep(false);
+    return () => {
+      if (specialty.length > 0) {
+        addSpecialtyStep(true);
+      }
+    };
+  }, [addSpecialtyStep, specialty.length]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <Header title={'Professional\nSpecialty'} />
+      <Header
+        title={'Professional\nSpecialty'}
+        summary="Select your area of expertise to match with the right patients."
+      />
       <FlatGrid
         itemDimension={width / 2 - 15}
         spacing={10}
@@ -106,9 +118,9 @@ export const Specialty = () => {
               borderRadius={spacing.borderRadius}
               alignItems="center"
               height={170}
-              borderWidth={selected && selected === title ? 3 : 0}
+              borderWidth={specialty && specialty === title ? 3 : 0}
               borderColor={
-                selected && selected === title ? color.dark : undefined
+                specialty && specialty === title ? color.dark : undefined
               }
               mt="m"
               pt="ll"

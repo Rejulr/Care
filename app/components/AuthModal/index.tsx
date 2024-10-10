@@ -42,7 +42,7 @@ export const AuthModal = ({bottomSheetModalRef}: AuthModalProps) => {
     setAuth('google');
     googleSignIn()
       .then(() => setAuth(undefined))
-      .catch(e => console.log(e));
+      .catch(() => setAuth(undefined));
   };
   return (
     <BottomSheetModal

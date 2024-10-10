@@ -14,8 +14,11 @@ import Pediatrics from './pediatrics.svg';
 import Upload from './upload.svg';
 
 import Apple from './apple.svg';
+import Calender from './calender.svg';
+import Dropdown from './dropdown.svg';
 import Google from './google.svg';
 import Gynecology from './gynecology.svg';
+import MarkCheck from './mark.svg';
 import Nephrology from './nephrology.svg';
 import Ophthalmology from './ophthalmology.svg';
 
@@ -23,13 +26,16 @@ export {
   Apple,
   ArrowBackAndroid,
   ArrowBackiOS,
+  Calender,
   Cardiology,
   Dentist,
+  Dropdown,
   Gastrology,
   General,
   Google,
   Gynecology,
   Lungs,
+  MarkCheck,
   Nephrology,
   Neurology,
   OnboardingOne,

@@ -25,7 +25,6 @@ export const Onboarding = () => {
   const getStartedModalRef = useRef<BottomSheetModal>(null);
 
   const openGetStartedModal = useCallback(() => {
-    console.log(progress.index);
     if (progress.index === 2) {
       getStartedModalRef.current?.present();
     } else {
@@ -35,6 +34,7 @@ export const Onboarding = () => {
 
   return (
     <Screen
+      buttonShadow={false}
       buttonLabel={progress.index === 2 ? 'Get Started' : 'Continue'}
       buttonOnPress={openGetStartedModal}>
       <OnboardingProgress progress={progress} />

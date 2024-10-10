@@ -1,19 +1,34 @@
 import React from 'react';
-import {TextInput} from 'react-native';
+import {TextInput, TextInputProps} from 'react-native';
 import {Box} from '../../Box';
 import {Text} from '../../Text';
-import {$textInput} from './styles';
+import {$textArea, $textInput} from './styles';
 
-type InputFieldProps = {
+type InputFieldProps = Omit<TextInputProps, 'ref'> & {
   label: string;
+  isTextArea?: boolean;
+  onChange: (...event: any[]) => void;
+  value?: string;
 };
-export const InputField = ({label}: InputFieldProps) => {
+export const InputField = ({
+  label,
+  onChange,
+  isTextArea,
+  value,
+  ...props
+}: InputFieldProps) => {
   return (
     <Box>
       <Text color="formLabel" variant="medium">
         {label}
       </Text>
-      <TextInput style={$textInput} value="Male" keyboardType="default" />
+      <TextInput
+        {...props}
+        style={[$textInput, isTextArea && $textArea]}
+        keyboardType="default"
+        onChangeText={onChange}
+        value={value}
+      />
     </Box>
   );
 };

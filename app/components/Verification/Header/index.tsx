@@ -9,14 +9,14 @@ type IHeader = {
 };
 export const Header = ({summary, title}: IHeader) => {
   return (
-    <Box marginHorizontal="l">
+    <Box marginHorizontal="l" pt="xl">
       <Text color="primary" variant="mSemiBold" fontSize={moderateScale(30)}>
         {title}
       </Text>
       <Text variant="regular" pt="n">
         {summary
           ? summary
-          : 'Your information wil be share with our Medical Expert team who will verify your identity.'}
+          : 'Your information will be shared with our Medical Expert team for identity verification.'}
       </Text>
     </Box>
   );

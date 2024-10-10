@@ -4,7 +4,6 @@ import appleAuth, {
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {Config} from 'react-native-config';
 import {UUID, isAndroid} from '../utils';
 export async function googleSignIn() {
   await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
@@ -47,7 +46,7 @@ export async function appleSignInAndroid() {
   // Configure the request
   appleAuthAndroid.configure({
     // The Service ID you registered with Apple
-    clientId: `com.wellbeingDoctor`,
+    clientId: 'com.wellbeingDoctor',
 
     // Return URL added to your Apple dev console. We intercept this redirect, but it must still match
     // the URL you provided to Apple. It can be an empty route on your backend as it's never called.
@@ -92,13 +91,14 @@ export const createUser = async (type: string, name?: string) => {
       userType: DOCTOR,
       dob: null,
       authProvider: type,
-      isSignInDeviceIOS: isAndroid,
+      isSignInDeviceIOS: !isAndroid,
       gender: '',
       deviceID: '',
       specialty: '',
       verified: false,
       selfie: '',
       qualification: '',
+      bio: '',
     });
   }
 };
