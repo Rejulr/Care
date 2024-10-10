@@ -14,6 +14,17 @@ import Pediatrics from './pediatrics.svg';
 import Upload from './upload.svg';
 
 import Apple from './apple.svg';
+import CalenderActive from './calenderActive.svg';
+import CalenderTab from './calendertab.svg';
+import Chat from './chat.svg';
+import ChatActive from './chatActive.svg';
+import Earning from './earning.svg';
+import EarningActive from './earningActive.svg';
+import HomeActive from './homeActive.svg';
+import HomeTab from './hometab.svg';
+import Profile from './profile.svg';
+import ProfileActive from './profileActive.svg';
+
 import Calender from './calender.svg';
 import Dropdown from './dropdown.svg';
 import Google from './google.svg';
@@ -27,13 +38,21 @@ export {
   ArrowBackAndroid,
   ArrowBackiOS,
   Calender,
+  CalenderActive,
+  CalenderTab,
   Cardiology,
+  Chat,
+  ChatActive,
   Dentist,
   Dropdown,
+  Earning,
+  EarningActive,
   Gastrology,
   General,
   Google,
   Gynecology,
+  HomeActive,
+  HomeTab,
   Lungs,
   MarkCheck,
   Nephrology,
@@ -44,5 +63,7 @@ export {
   Ophthalmology,
   Orthopedics,
   Pediatrics,
+  Profile,
+  ProfileActive,
   Upload,
 };

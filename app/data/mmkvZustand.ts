@@ -28,7 +28,7 @@ export const useAppStore = create<StoreState>()(
       ...createUserSlices(...args),
     }),
     {
-      name: 'wellbeing-app',
+      name: 'wellbeingapp-store',
       storage: createJSONStorage(() => zustandStorage),
     },
   ),

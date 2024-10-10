@@ -12,11 +12,13 @@ import {Option} from './Options';
 import {ProgressBar} from './ProgressBar';
 import {Screen} from './Screen';
 import {Text} from './Text';
+import {TabIcon} from './TabIcon';
 import {VerificationHeader} from './VerificationHeader';
 
 export {
   AnimatedBox,
   AuthModal,
+  TabIcon,
   Box,
   Button,
   CameraButton,
