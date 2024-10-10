@@ -8,17 +8,8 @@ import {Document, PersonalInformation, Specialty} from '../../layout';
 import {StackNavigation} from '../../navigators';
 
 export const Verification = () => {
-  const {
-    gender,
-    fullName,
-    email,
-    dob,
-    bio,
-    specialty,
-    selfie,
-    qualification,
-    UID,
-  } = useAppStore();
+  const {gender, fullName, email, dob, bio, specialty, selfie, qualification} =
+    useAppStore();
   const {uploadDocument, uploadError} = useUpload();
   const {verification, uploaded, error} = useFirestore();
   const [isLoading, setLoading] = useState<boolean>(false);

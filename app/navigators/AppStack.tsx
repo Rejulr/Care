@@ -9,6 +9,7 @@ import {Onboarding, Verification, VerificationStatus} from '../screens';
 import {Capture} from '../screens/Capture';
 import {isEmpty} from '../utils';
 import {AppStackParamList} from './AppStackParamList';
+import {HomeNavigator} from './HomeNavigator';
 export const AppStack = () => {
   const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -75,6 +76,7 @@ export const AppStack = () => {
                 }}
               />
               <Stack.Screen name="Capture" component={Capture} />
+              <Stack.Screen name="HomeTab" component={HomeNavigator} />
             </>
           )}
         </>
