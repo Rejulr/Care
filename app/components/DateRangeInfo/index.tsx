@@ -1,0 +1,35 @@
+import React from 'react';
+import {CalenderTab} from '../../assets/svgs';
+import {useAppStore} from '../../data';
+import {dateInfo, moderateScale} from '../../utils';
+import {Box} from '../Box';
+import {Text} from '../Text';
+
+export const DateRangeInfo = () => {
+  const {dateRange} = useAppStore();
+
+  return (
+    <Box
+      flexDirection="row"
+      mt="m"
+      borderRadius={10}
+      paddingHorizontal="m"
+      paddingVertical="m"
+      backgroundColor="greenLight">
+      <CalenderTab />
+      <Box paddingHorizontal="n">
+        <Text variant="semiBold" color="primary">
+          {dateRange.includes('/') ? 'Custom Range' : dateRange}
+        </Text>
+        <Text
+          pt="s"
+          textAlign="left"
+          color="primary"
+          variant="regular"
+          fontSize={moderateScale(14)}>
+          {dateInfo(dateRange)}
+        </Text>
+      </Box>
+    </Box>
+  );
+};

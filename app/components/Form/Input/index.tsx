@@ -7,7 +7,7 @@ import {$textArea, $textInput} from './styles';
 type InputFieldProps = Omit<TextInputProps, 'ref'> & {
   label: string;
   isTextArea?: boolean;
-  onChange: (...event: any[]) => void;
+  onChange?: (...event: any[]) => void;
   value?: string;
 };
 export const InputField = ({

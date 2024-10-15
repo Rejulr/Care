@@ -4,6 +4,8 @@ export type AppStackParamList = {
   Onboarding: undefined;
   Verification: undefined;
   VerificationStatus: undefined;
+  ManageAppointment: undefined;
+  CustomDateRange: undefined;
   HomeTab: undefined;
   Capture: {type: 'SELFIE' | 'ID'};
 };

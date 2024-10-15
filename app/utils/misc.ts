@@ -38,6 +38,25 @@ export const DAYS = [
   'Sunday',
 ];
 
+export function dateInfo(type: string) {
+  //DAYS ==> WEEKDAYS ONLY
+  //ENDS ==> WEEKENDS ONLY
+  //ENTIRE ==>ENTIRE WEEK
+  const customRange = type.includes('/') && type.split('/');
+  const startDate = customRange[0];
+  const endDate = customRange[1];
+
+  if (type.includes('days')) {
+    return `Selecting ${type} indicates your availability for patient appointments from Monday to Friday every week.`;
+  } else if (type.includes('ends')) {
+    return `Selecting ${type} indicates your availability for patient appointments on both Saturday and Sunday`;
+  } else if (type.includes('Entire')) {
+    return `Selecting ${type} indicates your availability for patient appointments every day, Monday through Sunday.`;
+  } else if (type.includes('/')) {
+    return `Selecting custom range indicates your availability for patient appointments between the selected dates, from ${startDate} to ${endDate}  `;
+  }
+}
+
 export const formatDate = (dob: Date) => {
   if (!dob || (dob instanceof Date && isNaN(dob.getTime()))) {
     return ' ';

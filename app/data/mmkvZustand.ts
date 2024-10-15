@@ -1,6 +1,7 @@
 import {MMKV} from 'react-native-mmkv';
 import {create} from 'zustand';
 import {createJSONStorage, persist, StateStorage} from 'zustand/middleware';
+import {APPOINTMENTSlices, createAppointmentSlices} from './appointment';
 import {createStepsSlices, STEPSlices} from './step';
 import {createUserSlices, UserSlices} from './user';
 
@@ -19,13 +20,14 @@ export const zustandStorage: StateStorage = {
   },
 };
 
-export type StoreState = UserSlices & STEPSlices;
+export type StoreState = UserSlices & STEPSlices & APPOINTMENTSlices;
 
 export const useAppStore = create<StoreState>()(
   persist(
     (...args) => ({
       ...createStepsSlices(...args),
       ...createUserSlices(...args),
+      ...createAppointmentSlices(...args),
     }),
     {
       name: 'wellbeingapp-store',
