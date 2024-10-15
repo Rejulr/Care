@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Pressable} from 'react-native';
-import {Dropdown, Radio, RadioActive} from '../../assets/svgs';
+import {Radio, RadioActive} from '../../assets/svgs';
 import {useAppStore} from '../../data';
 import {Box} from '../Box';
 import {Text} from '../Text';
@@ -45,24 +45,6 @@ export const RadioButtons = ({title, onCustomPress}: RadioButtonsProps) => {
               <Radio />
             )}
             <Text color="primary">{label}</Text>
-            {customIndex === index && isCustomDate && (
-              <Pressable onPress={onCustomPress}>
-                <Box
-                  backgroundColor="secondary2"
-                  gap="s"
-                  p="s"
-                  justifyContent="center"
-                  borderRadius={9}
-                  flexDirection="row"
-                  alignItems="center">
-                  <Text color="primary" variant="medium">
-                    {/* 24 Mar - 19 Apr 2022 */}
-                    {dateRange}
-                  </Text>
-                  <Dropdown />
-                </Box>
-              </Pressable>
-            )}
           </Box>
         </Pressable>
       ))}
