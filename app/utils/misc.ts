@@ -28,6 +28,15 @@ export const MONTH_NAMES = [
   'November',
   'December',
 ];
+export const DAYS = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];
 
 export const formatDate = (dob: Date) => {
   if (!dob || (dob instanceof Date && isNaN(dob.getTime()))) {
@@ -39,12 +48,31 @@ export const formatDate = (dob: Date) => {
     MONTH_NAMES[dateObj.getMonth()]
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
+export const formatDay = (dob: Date) => {
+  if (!dob || (dob instanceof Date && isNaN(dob.getTime()))) {
+    return ' ';
+  }
+  const dateObj = new Date(dob);
+
+  return `${
+    MONTH_NAMES[dateObj.getMonth()]
+  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+};
+
 export const delay = (ms: number) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
-export function isEmpty(str:string) {
-  return (!str || str.length === 0 );
+export function isEmpty(str: string) {
+  return !str || str.length === 0;
 }
+
+export const today = () => {
+  const date: Date = new Date();
+  const month = date.getMonth();
+  const day = date.getUTCDay();
+  const year = date.getUTCFullYear();
+  return {month, day, year};
+};
 export type IScroll = {
   index: number;
   value: number;

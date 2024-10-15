@@ -66,7 +66,7 @@ export const AppStack = () => {
               name="VerificationStatus"
               component={VerificationStatus}
             />
-          ) : (
+          ) : verificationStatus === 'not_started' ? (
             <>
               <Stack.Screen
                 name="Verification"
@@ -76,6 +76,9 @@ export const AppStack = () => {
                 }}
               />
               <Stack.Screen name="Capture" component={Capture} />
+            </>
+          ) : (
+            <>
               <Stack.Screen name="HomeTab" component={HomeNavigator} />
             </>
           )}

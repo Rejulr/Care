@@ -2,6 +2,7 @@ export const colors = {
   primary: '#161528',
   white: '#FFFFFF',
   subLabel: '#9195A2',
+  darkLabel: '#8A98A1',
   secondary1: '#F5ECDA',
   secondary1Light: '#FCF9F4',
   socialButton: '#F4F6F8',
