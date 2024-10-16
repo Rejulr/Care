@@ -3,8 +3,7 @@ import {colors} from '../../theme/colors';
 import {moderateScale} from '../../utils';
 
 export const $container: ViewStyle = {
-  marginTop: moderateScale(8),
-  borderRadius: moderateScale(100),
+   borderRadius: moderateScale(100),
 };
 
 export const $border: ViewStyle = {

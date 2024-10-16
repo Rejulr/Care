@@ -14,8 +14,6 @@ export const RadioButtons = ({title, onCustomPress}: RadioButtonsProps) => {
 
   const isCustomDate = dateRange.includes('/');
   const [active, setActive] = useState<string>();
-  const customIndex = 3;
-  console.log(dateRange, active, isCustomDate);
   const onPress = (radioTitle: string) => {
     if (radioTitle.includes('Custom')) {
       onCustomPress();

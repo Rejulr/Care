@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback} from 'react';
+import {Pressable} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import {ArrowBackAndroid, ArrowBackiOS, Cancel} from '../../assets/svgs';
 import {StackNavigation} from '../../navigators';
@@ -10,10 +11,18 @@ import {$border, $button, $container, $widthHeightStyle} from './style';
 
 type DismissProps = {
   wnh?: number;
+  rightButtonLabel?: string;
+  rightButtonOnPress?: () => void;
   title?: string;
   isModal?: boolean;
 };
-export const Dismiss = ({wnh = 40, title, isModal = false}: DismissProps) => {
+export const Dismiss = ({
+  wnh = 40,
+  title,
+  isModal = false,
+  rightButtonOnPress,
+  rightButtonLabel,
+}: DismissProps) => {
   const navigation = useNavigation<StackNavigation>();
 
   const onPress = useCallback(() => {
@@ -36,12 +45,25 @@ export const Dismiss = ({wnh = 40, title, isModal = false}: DismissProps) => {
           )}
         </RectButton>
       </Box>
+
       <Box flex={1} alignItems="center">
         <Text variant="medium" fontSize={moderateScale(18)}>
           {title}
         </Text>
       </Box>
-      <Box flex={0.1} />
+
+      <Box flex={0.513} hitSlop={20}>
+        {rightButtonLabel && (
+          <Pressable onPress={rightButtonOnPress}>
+            <Text
+              color="primary"
+              variant="buttonLabel"
+              fontSize={moderateScale(15)}>
+              {rightButtonLabel}
+            </Text>
+          </Pressable>
+        )}
+      </Box>
     </Box>
   );
 };

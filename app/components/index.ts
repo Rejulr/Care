@@ -2,7 +2,7 @@ import {AuthModal} from './AuthModal';
 import {AnimatedBox, Box} from './Box';
 import {Button} from './Button';
 import {CameraButton} from './CameraButton';
-import { DateRangeInfo } from './DateRangeInfo';
+import {DateRangeInfo} from './DateRangeInfo';
 import {Dismiss} from './Dismiss';
 import {Gradient} from './LinearGradient';
 import {
@@ -17,14 +17,15 @@ import {Screen} from './Screen';
 import {TabIcon} from './TabIcon';
 import {Text} from './Text';
 import {VerificationHeader} from './VerificationHeader';
+import {WorkingHoursForm, WorkingHoursFormList} from './WorkingHours';
 
 export {
   AnimatedBox,
   AuthModal,
   Box,
-  DateRangeInfo,
   Button,
   CameraButton,
+  DateRangeInfo,
   Dismiss,
   Gradient,
   OnboardingCarousel,
@@ -37,4 +38,6 @@ export {
   TabIcon,
   Text,
   VerificationHeader,
+  WorkingHoursForm,
+  WorkingHoursFormList,
 };

@@ -62,7 +62,6 @@ export const AppStack = () => {
       initialRouteName="Onboarding"
       screenOptions={{
         headerShown: false,
-
         contentStyle: {backgroundColor: 'white'},
       }}>
       {user ? (

@@ -78,6 +78,29 @@ export const formatDay = (dob: Date) => {
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
 
+export const isDateValid = (dob: Date) => {
+  const isValid = !dob || (dob instanceof Date && isNaN(dob.getTime()));
+
+  return !isValid;
+};
+
+export const formatAMPM = (date: Date) => {
+  if (date !== null) {
+    if (date !== undefined && isDateValid(date) && date !== null) {
+      let hours = date?.getHours();
+      let minutes = date.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+
+      hours %= 12;
+      hours = hours || 12;
+
+      const strTime = `${hours}:${
+        minutes < 10 ? `0${minutes}` : minutes
+      } ${ampm}`;
+      return strTime;
+    }
+  }
+};
 export const delay = (ms: number) =>
   new Promise(resolve => setTimeout(resolve, ms));
 

@@ -36,11 +36,17 @@ import Gynecology from './gynecology.svg';
 import MarkCheck from './mark.svg';
 import Nephrology from './nephrology.svg';
 import Ophthalmology from './ophthalmology.svg';
+import StartTime from './startTime.svg';
+import EndTime from './endTime.svg';
+import CancelWhite from './cancelWhite.svg';
 
 export {
   Apple,
   ArrowBackAndroid,
   ArrowBackiOS,
+  StartTime,
+  EndTime,
+  CancelWhite,
   Calender,
   CalenderActive,
   CalenderTab,
