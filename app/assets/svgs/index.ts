@@ -2,6 +2,8 @@ import ArrowBackAndroid from './back_android.svg';
 import ArrowBackiOS from './back_ios.svg';
 import Cardiology from './cardiology.svg';
 import Dentist from './dentist.svg';
+
+import Cancel from './cancel.svg';
 import Gastrology from './gastrology.svg';
 import General from './general.svg';
 import Lungs from './lungs.svg';
@@ -14,6 +16,8 @@ import Pediatrics from './pediatrics.svg';
 import Upload from './upload.svg';
 
 import Apple from './apple.svg';
+import RadioActive from './checked.svg';
+import Radio from './uncheck.svg';
 import CalenderActive from './calenderActive.svg';
 import CalenderTab from './calendertab.svg';
 import Chat from './chat.svg';
@@ -32,11 +36,17 @@ import Gynecology from './gynecology.svg';
 import MarkCheck from './mark.svg';
 import Nephrology from './nephrology.svg';
 import Ophthalmology from './ophthalmology.svg';
+import StartTime from './startTime.svg';
+import EndTime from './endTime.svg';
+import CancelWhite from './cancelWhite.svg';
 
 export {
   Apple,
   ArrowBackAndroid,
   ArrowBackiOS,
+  StartTime,
+  EndTime,
+  CancelWhite,
   Calender,
   CalenderActive,
   CalenderTab,
@@ -57,8 +67,11 @@ export {
   MarkCheck,
   Nephrology,
   Neurology,
+  Radio,
+  RadioActive,
   OnboardingOne,
   OnboardingThree,
+  Cancel,
   OnboardingTwo,
   Ophthalmology,
   Orthopedics,
