@@ -11,7 +11,7 @@ export const Verification = () => {
   const {gender, fullName, email, dob, bio, specialty, selfie, qualification} =
     useAppStore();
   const {uploadDocument, uploadError} = useUpload();
-  const {verification, uploaded, error} = useFirestore();
+  const {verification, hasReceived, error} = useFirestore();
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const navigation = useNavigation<StackNavigation>();
@@ -47,7 +47,7 @@ export const Verification = () => {
   }, [qualification]);
 
   useEffect(() => {
-    if (uploaded) {
+    if (hasReceived) {
       setLoading(false);
       navigation.reset({
         index: 0,
@@ -55,7 +55,7 @@ export const Verification = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploaded]);
+  }, [hasReceived]);
 
   useEffect(() => {
     if (error || uploadError) {

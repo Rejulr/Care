@@ -29,22 +29,21 @@ export const MONTH_NAMES = [
   'December',
 ];
 export const DAYS = [
+  'Sunday',
   'Monday',
   'Tuesday',
   'Wednesday',
   'Thursday',
   'Friday',
   'Saturday',
-  'Sunday',
 ];
 
 export function dateInfo(type: string) {
   //DAYS ==> WEEKDAYS ONLY
   //ENDS ==> WEEKENDS ONLY
   //ENTIRE ==>ENTIRE WEEK
-  const customRange = type.includes('/') && type.split('/');
-  const startDate = customRange[0];
-  const endDate = customRange[1];
+  const startDate = type.includes('/') && type.split('/')[0];
+  const endDate = type.includes('/') && type.split('/')[1];
 
   if (type.includes('days')) {
     return `Selecting ${type} indicates your availability for patient appointments from Monday to Friday every week.`;
@@ -67,38 +66,35 @@ export const formatDate = (dob: Date) => {
     MONTH_NAMES[dateObj.getMonth()]
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
-export const formatDay = (dob: Date) => {
-  if (!dob || (dob instanceof Date && isNaN(dob.getTime()))) {
-    return ' ';
-  }
-  const dateObj = new Date(dob);
-
-  return `${
-    MONTH_NAMES[dateObj.getMonth()]
-  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
-};
 
 export const isDateValid = (dob: Date) => {
   const isValid = !dob || (dob instanceof Date && isNaN(dob.getTime()));
 
   return !isValid;
 };
+export const formatTiming = (start: any, end: any) => {
+  // const startTime = new Date(start.seconds * 1000);
+  // const endTime = new Date(end.seconds * 1000);
+  const startTime = new Date(start);
+  const endTime = new Date(end);
+
+  return `${formatAMPM(startTime)} to ${formatAMPM(endTime)}`;
+};
 
 export const formatAMPM = (date: Date) => {
-  if (date !== null) {
-    if (date !== undefined && isDateValid(date) && date !== null) {
-      let hours = date?.getHours();
-      let minutes = date.getMinutes();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
+  //using date.getHours() directly invoke an error
+  if (date !== undefined && isDateValid(date) && date !== null) {
+    let hours = new Date(date).getHours();
+    let minutes = new Date(date).getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
 
-      hours %= 12;
-      hours = hours || 12;
+    hours %= 12;
+    hours = hours || 12;
 
-      const strTime = `${hours}:${
-        minutes < 10 ? `0${minutes}` : minutes
-      } ${ampm}`;
-      return strTime;
-    }
+    const strTime = `${hours}:${
+      minutes < 10 ? `0${minutes}` : minutes
+    } ${ampm}`;
+    return strTime;
   }
 };
 export const delay = (ms: number) =>
