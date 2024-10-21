@@ -19,7 +19,7 @@ export const DateRangeInfo = () => {
       <CalenderTab />
       <Box paddingHorizontal="n">
         <Text variant="semiBold" color="primary">
-          {dateRange.includes('/') ? 'Custom Range' : dateRange}
+          {dateRange.includes('/') ? 'Custom Date' : dateRange}
         </Text>
         <Text
           pt="s"

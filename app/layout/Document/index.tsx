@@ -9,6 +9,7 @@ import {useAppStore} from '../../data';
 import {StackNavigation} from '../../navigators';
 import {spacing} from '../../theme/spacing';
 import {moderateScale} from '../../utils';
+import {$container, $scrollContainer, $selfieContainer} from './styles';
 export const Document = () => {
   const navigation = useNavigation<StackNavigation>();
   const {selfie, qualification, addIdentityStep} = useAppStore();
@@ -22,7 +23,7 @@ export const Document = () => {
   }, [addIdentityStep, qualification, selfie]);
 
   return (
-    <ScrollView style={{flex: 1, paddingBottom: 90}}>
+    <ScrollView style={$scrollContainer}>
       <Header title={'Identity\nVerification'} />
       <Box mt="xl" gap="ll" marginHorizontal="l">
         <Pressable
@@ -36,7 +37,7 @@ export const Document = () => {
             alignItems="center"
             p="m"
             backgroundColor="secondary1Light"
-            style={{height: 180, width: '100%'}}>
+            style={$selfieContainer}>
             <Box alignItems="center">
               <Text
                 variant="semiBold"
@@ -89,7 +90,7 @@ export const Document = () => {
             alignItems="center"
             p="m"
             backgroundColor="secondary2Light"
-            style={{height: 180, width: '100%'}}>
+            style={$container}>
             <Box alignItems="center">
               <Text
                 variant="semiBold"

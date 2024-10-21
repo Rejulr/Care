@@ -1,11 +1,13 @@
-import firestore from '@react-native-firebase/firestore';
+import firestore, {
+  FirebaseFirestoreTypes,
+} from '@react-native-firebase/firestore';
 import {useState} from 'react';
 import {useAppStore} from '../data';
-import {USERS} from '../services';
+import {APPOINTMENTS, USERS} from '../services';
 import {isDateValid} from '../utils';
 
 export const useFirestore = () => {
-  const [uploaded, setUploaded] = useState<boolean>();
+  const [hasReceived, setHasReceived] = useState<boolean>(false);
   const [error, setError] = useState<boolean>();
   const {
     UID,
@@ -20,6 +22,7 @@ export const useFirestore = () => {
     customRange,
     workingHours,
   } = useAppStore();
+  const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData[]>([]);
 
   const verification = async (qualification: string, selfie: string) => {
     if (UID) {
@@ -37,29 +40,61 @@ export const useFirestore = () => {
         })
         .then(() => {
           addVerificationStatus('pending');
-          setUploaded(true);
+          setHasReceived(true);
         })
         .catch(() => setError(true));
     }
   };
 
-  const updateDoctorSchedule = () => {
-    const collection = firestore().collection(USERS).doc(UID);
+  const updateDoctorSchedule = async () => {
+    const collection = await firestore().collection(USERS).doc(UID);
     const validHours = workingHours.filter(
       item => isDateValid(item.endTime) && isDateValid(item.startTime),
     );
+
     collection
       .update({
         fee,
         customRange,
         dateRange,
-        workingHours: validHours,
+        workingHours: firestore.FieldValue.arrayUnion(...validHours),
       })
       .then(() => {
-        setUploaded(true);
+        setHasReceived(true);
       })
       .catch(() => setError(true));
   };
 
-  return {verification, uploaded, error, updateDoctorSchedule};
+  const appointmentTiming = async (appointmentDate: string) => {
+    try {
+      const collection = await firestore()
+        .collection(APPOINTMENTS)
+        .where('doctorID', '==', UID)
+        .where('appointmentDate', '==', appointmentDate)
+        .get();
+
+      const newData = collection.docs.map(doc => ({...doc.data()}));
+      setData(newData);
+      setHasReceived(true);
+    } catch (_) {
+      setError(true);
+    }
+  };
+
+  const getUser = async (patientID: string) => {
+    const user = (
+      await firestore().collection(USERS).doc(patientID).get()
+    ).data();
+    return user;
+  };
+
+  return {
+    verification,
+    hasReceived,
+    error,
+    getUser,
+    data,
+    updateDoctorSchedule,
+    appointmentTiming,
+  };
 };

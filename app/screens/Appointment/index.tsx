@@ -1,19 +1,64 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import moment from 'moment';
+import React, {useEffect, useRef, useState} from 'react';
 import {Pressable} from 'react-native';
+import CalendarStrip from 'react-native-calendar-strip';
 import {CalenderTab} from '../../assets/svgs';
-import {Box, Screen} from '../../components';
+import {AppointmentTimeline, Box, Screen} from '../../components';
 import {Header} from '../../components/Verification';
+import {useFirestore} from '../../hooks';
 import {StackNavigation} from '../../navigators';
+import {colors} from '../../theme';
+import {fonts} from '../../theme/typography';
 import {DAYS, formatDate, moderateScale} from '../../utils';
+import {$calendarStrip, $dateNameStyle, $dateNumberStyle} from './styles';
 
 export const Appointment = () => {
   const day = new Date().getDay();
   const navigation = useNavigation<StackNavigation>();
+  const calendarStripRef = useRef<CalendarStrip>(null);
+  const [selectedDate, setSelectedDate] = useState<string>();
+  const [appointments, setAppointments] = useState<any[]>([]);
+  const endOfTheYear = new Date(new Date().getFullYear(), 11, 31);
+  const {appointmentTiming, data, getUser} = useFirestore();
 
   const onPress = () => {
     navigation.navigate('ManageAppointment');
   };
+
+  const onDateSelected = (date: moment.Moment) => {
+    setSelectedDate(moment(date).format('YYYY-MM-DD'));
+  };
+
+  useEffect(() => {
+    if (selectedDate) {
+      appointmentTiming(selectedDate);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDate]);
+
+  useEffect(() => {
+    data.reduce(async (acc, item) => {
+      const time = moment(item.appointmentTime[0].startTime).format('h:mm a');
+      const user = await getUser(item.patientID);
+      item.patientName = user?.fullName;
+      item.selfie = user?.selfie;
+      const existingGroup = acc.find(group => group.time === time);
+      if (existingGroup) {
+        setAppointments([{...appointments, ...{item}}]);
+      } else {
+        setAppointments([{...appointments, ...{time, data: [item]}}]);
+      }
+    }, []);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  useEffect(() => {
+    appointmentTiming(moment().format('YYYY-MM-DD'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <Screen styles={{backgroundColor: 'white'}} useAlignment useDefault>
@@ -23,7 +68,7 @@ export const Appointment = () => {
         justifyContent="space-between"
         alignItems="center">
         <Header
-          title={DAYS[day - 1]}
+          title={DAYS[day]}
           summary={formatDate(new Date())}
           addDefault={false}
         />
@@ -39,6 +84,36 @@ export const Appointment = () => {
           </Box>
         </Pressable>
       </Box>
+      <CalendarStrip
+        ref={calendarStripRef}
+        calendarAnimation={undefined}
+        useIsoWeekday={false}
+        scrollerPaging={false}
+        scrollable
+        disabledDateOpacity={0.27}
+        highlightDateNameStyle={{
+          fontFamily: fonts.montserratAlternates.Bold,
+        }}
+        highlightDateNumberStyle={{
+          fontFamily: fonts.montserratAlternates.Bold,
+        }}
+        selectedDate={moment()}
+        startingDate={moment()}
+        // datesBlacklist={datesBlacklistFunc}
+        minDate={moment()}
+        maxDate={endOfTheYear}
+        // selectedDate={selectedCalendarDate}
+        daySelectionAnimation={{
+          type: 'background',
+          duration: 100,
+          highlightColor: colors.secondary2,
+        }}
+        onDateSelected={onDateSelected}
+        style={$calendarStrip}
+        dateNumberStyle={$dateNumberStyle}
+        dateNameStyle={$dateNameStyle}
+      />
+      <AppointmentTimeline appointments={appointments} />
     </Screen>
   );
 };

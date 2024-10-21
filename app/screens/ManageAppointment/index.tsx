@@ -9,7 +9,7 @@ import {isDateValid} from '../../utils';
 
 export const ManageAppointment = () => {
   const {fee, dateRange, workingHours} = useAppStore();
-  const {error, updateDoctorSchedule, uploaded} = useFirestore();
+  const {error, updateDoctorSchedule, hasReceived} = useFirestore();
   const [isLoading, setLoading] = useState<boolean>(false);
   const navigation = useNavigation<StackNavigation>();
 
@@ -23,7 +23,7 @@ export const ManageAppointment = () => {
   const [layout, setLayout] = useState(INITIAL_LAYOUT);
 
   useEffect(() => {
-    if (uploaded) {
+    if (hasReceived) {
       setLoading(false);
       navigation.reset({
         index: 0,
@@ -31,7 +31,7 @@ export const ManageAppointment = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploaded]);
+  }, [hasReceived]);
   useEffect(() => {
     if (error) {
       setLoading(false);

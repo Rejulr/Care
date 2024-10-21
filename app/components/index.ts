@@ -16,6 +16,7 @@ import {RadioButtons} from './Radio';
 import {Screen} from './Screen';
 import {TabIcon} from './TabIcon';
 import {Text} from './Text';
+import { AppointmentTimeline } from './Timeline';
 import {VerificationHeader} from './VerificationHeader';
 import {WorkingHoursForm, WorkingHoursFormList} from './WorkingHours';
 
@@ -27,6 +28,7 @@ export {
   CameraButton,
   DateRangeInfo,
   Dismiss,
+  AppointmentTimeline,
   Gradient,
   OnboardingCarousel,
   OnboardingFooter,
