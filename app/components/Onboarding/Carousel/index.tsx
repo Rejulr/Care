@@ -7,6 +7,7 @@ import {carouselData, IScroll} from '../../../utils';
 import {Box} from '../../Box';
 import {Text} from '../../Text';
 import {$container, $item, $labelContainer, $labelHeading} from './styles';
+import { spacing } from '../../../theme/spacing';
 
 type IOnboardingCarousel = {
   carouselIndex: (index: IScroll) => void;
@@ -44,7 +45,7 @@ export const OnboardingCarousel = ({
         renderItem={({index, item}) => (
           <Box key={index} flex={1} width={width} overflow="hidden">
             <Box
-              borderRadius={10}
+              borderRadius={spacing.borderRadius}
               justifyContent="center"
               style={[
                 {backgroundColor: `${CAROUSEL_ITEM_BACKGROUND_COLOR[index]}`},

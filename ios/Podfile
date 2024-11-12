@@ -19,6 +19,11 @@ target 'WellbeingDoctor' do
   pod 'Firebase', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
+  pod 'WatermelonDB', path: '../node_modules/@nozbe/watermelondb'
+  pod 'simdjson', path: '../node_modules/@nozbe/simdjson', modular_headers: true
+
+
+
   use_frameworks! :linkage => :static
   $RNFirebaseAsStaticFramework = true
   use_react_native!(

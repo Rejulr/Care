@@ -4,6 +4,7 @@ import {useAppStore} from '../../data';
 import {dateInfo, moderateScale} from '../../utils';
 import {Box} from '../Box';
 import {Text} from '../Text';
+import { spacing } from '../../theme/spacing';
 
 export const DateRangeInfo = () => {
   const {dateRange} = useAppStore();
@@ -12,7 +13,7 @@ export const DateRangeInfo = () => {
     <Box
       flexDirection="row"
       mt="m"
-      borderRadius={10}
+      borderRadius={spacing.borderRadius}
       paddingHorizontal="m"
       paddingVertical="m"
       backgroundColor="greenLight">

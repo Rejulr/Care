@@ -1,7 +1,9 @@
 import {AuthModal} from './AuthModal';
+import {Avatar} from './Avatar';
 import {AnimatedBox, Box} from './Box';
 import {Button} from './Button';
 import {CameraButton} from './CameraButton';
+import {MessageHeader} from './Chat';
 import {DateRangeInfo} from './DateRangeInfo';
 import {Dismiss} from './Dismiss';
 import {Gradient} from './LinearGradient';
@@ -16,20 +18,29 @@ import {RadioButtons} from './Radio';
 import {Screen} from './Screen';
 import {TabIcon} from './TabIcon';
 import {Text} from './Text';
-import { AppointmentTimeline } from './Timeline';
+import {AppointmentTimeline} from './Timeline';
+import {Call,IncomingCall} from './VideoCall';
 import {VerificationHeader} from './VerificationHeader';
 import {WorkingHoursForm, WorkingHoursFormList} from './WorkingHours';
 
+import {EnhancedChannelList, EnhancedMessageItem} from './Chat';
+
 export {
   AnimatedBox,
+  AppointmentTimeline,
   AuthModal,
+  Avatar,
+  Call,
   Box,
+  IncomingCall,
   Button,
   CameraButton,
   DateRangeInfo,
   Dismiss,
-  AppointmentTimeline,
+  EnhancedChannelList,
+  EnhancedMessageItem,
   Gradient,
+  MessageHeader,
   OnboardingCarousel,
   OnboardingFooter,
   OnboardingProgress,

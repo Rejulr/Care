@@ -17,7 +17,7 @@ type DismissProps = {
   isModal?: boolean;
 };
 export const Dismiss = ({
-  wnh = 40,
+  wnh,
   title,
   isModal = false,
   rightButtonOnPress,

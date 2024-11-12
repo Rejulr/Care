@@ -14,13 +14,14 @@ import {
   Profile as ProfileTab,
 } from '../assets/svgs';
 import {TabIcon} from '../components';
-import {Chat, Earning, Home, Profile} from '../screens';
+import {Earning, EnhancedChat, Home, Profile} from '../screens';
 import {Appointment} from '../screens/Appointment';
 import {colors} from '../theme';
 import {$tabBar, $tabLabel} from './style';
 import {TabParamList} from './TabParamList';
 
 export const HomeNavigator = () => {
+  console.log('hometab');
   const Tab = createBottomTabNavigator<TabParamList>();
 
   return (
@@ -73,8 +74,9 @@ export const HomeNavigator = () => {
       />
       <Tab.Screen
         name="Chat"
-        component={Chat}
+        component={EnhancedChat}
         options={{
+          lazy: false,
           tabBarIcon: ({focused}) => (
             <TabIcon
               activeIcon={<ChatActive />}

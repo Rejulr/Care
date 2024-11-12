@@ -3,7 +3,7 @@ import {colors} from '../../theme/colors';
 import {moderateScale} from '../../utils';
 
 export const $container: ViewStyle = {
-   borderRadius: moderateScale(100),
+  borderRadius: moderateScale(100),
 };
 
 export const $border: ViewStyle = {
@@ -17,7 +17,7 @@ export const $button: ViewStyle = {
   borderRadius: moderateScale(100),
 };
 
-export const $widthHeightStyle = (wnh: number) => ({
+export const $widthHeightStyle = (wnh: number = 40) => ({
   width: moderateScale(wnh),
   height: moderateScale(wnh),
 });

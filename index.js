@@ -2,8 +2,11 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
-import App from './app/App';
-import {name as appName} from './app.json';
+import database from '@react-native-firebase/database';
 
+import {AppRegistry} from 'react-native';
+import {name as appName} from './app.json';
+import App from './app/App';
+
+database().setPersistenceEnabled(true);
 AppRegistry.registerComponent(appName, () => App);
