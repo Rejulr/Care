@@ -15,6 +15,7 @@ import {Loader} from '../../assets/lottie';
 import {Box} from '../Box';
 import {Text} from '../Text';
 import {$button, $buttonContainer, $label, $skottie} from './styles';
+import { spacing } from '../../theme/spacing';
 
 type ButtonProps = RectButtonProps & {
   onPress?: () => void;
@@ -49,7 +50,7 @@ export const Button = ({onPress, isLoading, label, ...props}: ButtonProps) => {
           ? withTiming(isButtonEnabled ? 0.2 : 0.9, {duration: 250})
           : withTiming(1, {duration: 250}),
 
-      borderRadius: 10,
+      borderRadius: spacing.borderRadius,
     };
   });
   return (

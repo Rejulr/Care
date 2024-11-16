@@ -43,6 +43,7 @@ export const Appointment = () => {
       const user = await getUser(item.patientID);
       item.patientName = user?.fullName;
       item.selfie = user?.selfie;
+
       const existingGroup = acc.find(group => group.time === time);
       if (existingGroup) {
         setAppointments([{...appointments, ...{item}}]);
@@ -64,7 +65,7 @@ export const Appointment = () => {
     <Screen styles={{backgroundColor: 'white'}} useAlignment useDefault>
       <Box
         flexDirection="row"
-        mt="ll"
+        mt="l"
         justifyContent="space-between"
         alignItems="center">
         <Header
@@ -98,9 +99,9 @@ export const Appointment = () => {
           fontFamily: fonts.montserratAlternates.Bold,
         }}
         selectedDate={moment()}
-        startingDate={moment()}
+        // startingDate={moment()}
         // datesBlacklist={datesBlacklistFunc}
-        minDate={moment()}
+        // minDate={moment()}
         maxDate={endOfTheYear}
         // selectedDate={selectedCalendarDate}
         daySelectionAnimation={{

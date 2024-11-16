@@ -1,15 +1,17 @@
 import React, {ReactNode} from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 import {RectButtonProps} from 'react-native-gesture-handler';
+import {LinearTransition} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {isAndroid} from '../../utils';
-import {Box} from '../Box';
+import {AnimatedBox, Box} from '../Box';
 import {Button} from '../Button';
 import {$container, $default, $shadow} from './style';
 type ScreenProps = RectButtonProps & {
   children: ReactNode;
   useAlignment?: boolean;
   styles?: StyleProp<ViewStyle>;
+  subStyles?: StyleProp<ViewStyle>;
   buttonLabel?: string;
   useDefault?: boolean;
   isLoading?: boolean;
@@ -20,6 +22,7 @@ export const Screen = ({
   buttonLabel,
   children,
   styles,
+  subStyles,
   useDefault = true,
   useAlignment,
   buttonShadow: addShadow = true,
@@ -31,7 +34,8 @@ export const Screen = ({
   const PADDING_TOP = isAndroid ? 16 : insets.top;
   const PADDING_BOTTOM = 34;
   return (
-    <Box
+    <AnimatedBox
+      layout={LinearTransition}
       pointerEvents={isLoading ? 'none' : 'auto'}
       flex={1}
       style={[
@@ -41,7 +45,7 @@ export const Screen = ({
         },
       ]}>
       <Box
-        style={[useDefault && $default, useAlignment && $container]}
+        style={[useDefault && $default, useAlignment && $container, subStyles]}
         flex={1}>
         {children}
       </Box>
@@ -62,6 +66,6 @@ export const Screen = ({
           />
         </Box>
       )}
-    </Box>
+    </AnimatedBox>
   );
 };

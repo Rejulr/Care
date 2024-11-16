@@ -10,6 +10,9 @@ export const textVariants = {
     fontSize: moderateScale(14),
     lineHeight: moderateScale(22),
   },
+  mRegular: {
+    fontFamily: 'MontserratAlternates-Regular',
+  },
   semiBold: {
     fontFamily: 'WorkSans-SemiBold',
   },
@@ -26,6 +29,9 @@ export const textVariants = {
     fontFamily: 'MontserratAlternates-SemiBold',
   },
   mBold: {
+    fontFamily: 'MontserratAlternates-Bold',
+  },
+  bold: {
     fontFamily: 'MontserratAlternates-Bold',
   },
 

@@ -6,5 +6,6 @@ export * from './Home';
 export * from './ManageAppointment';
 export * from './Onboarding';
 export * from './Profile';
+export * from './VideoCall';
 export * from './Verification';
 export * from './VerificationStatus';

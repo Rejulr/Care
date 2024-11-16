@@ -81,9 +81,9 @@ export const useFirestore = () => {
     }
   };
 
-  const getUser = async (patientID: string) => {
+  const getUser = async (userID: string) => {
     const user = (
-      await firestore().collection(USERS).doc(patientID).get()
+      await firestore().collection(USERS).doc(userID).get()
     ).data();
     return user;
   };

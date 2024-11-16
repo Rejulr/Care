@@ -20,7 +20,8 @@ export const colors = {
   inputStroke: '#D6DDE5',
   secondary4: '#D0D0D4',
   secondary4Dark: '#161528',
-
+  line: '#F5F5F5',
+  line2: '#e2e2e2e2',
   //Speciality
   orangeLight: '#FEF1E6',
   orangeDark: '#FD995C',
@@ -54,6 +55,8 @@ export const colors = {
 
   softPink: '#FFE6F7',
   softPinkDark: '#9B1B54',
+
+  chatSender: '#C1EFAF',
 };
 
 export type Colors = typeof colors;

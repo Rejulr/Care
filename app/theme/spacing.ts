@@ -1,5 +1,8 @@
 export const spacing = {
-  o: '0',
+  o: 0,
+  i: 1,
+  ii: 2,
+  iii: 3,
   s: 5,
   xs: 8,
   n: 10,
@@ -8,5 +11,6 @@ export const spacing = {
   lm: 25,
   ll: 30,
   xl: 40,
+  xll: 50,
   borderRadius: 9,
 };

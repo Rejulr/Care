@@ -1,10 +1,11 @@
 import {TextStyle} from 'react-native';
 import {colors} from '../../../theme';
 import {fonts} from '../../../theme/typography';
+import { spacing } from '../../../theme/spacing';
 
 export const $textInput: TextStyle = {
   marginTop: 10,
-  borderRadius: 9,
+  borderRadius: spacing.borderRadius,
   height: 50,
   borderWidth: 1,
   borderColor: colors.inputStroke,

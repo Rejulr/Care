@@ -5,7 +5,7 @@ import {Text} from '../../Text';
 import {$textArea, $textInput} from './styles';
 
 type InputFieldProps = Omit<TextInputProps, 'ref'> & {
-  label: string;
+  label?: string;
   isTextArea?: boolean;
   onChange?: (...event: any[]) => void;
   value?: string;
@@ -19,9 +19,11 @@ export const InputField = ({
 }: InputFieldProps) => {
   return (
     <Box>
-      <Text color="formLabel" variant="medium">
-        {label}
-      </Text>
+      {label && (
+        <Text color="formLabel" variant="medium">
+          {label}
+        </Text>
+      )}
       <TextInput
         {...props}
         style={[$textInput, isTextArea && $textArea]}

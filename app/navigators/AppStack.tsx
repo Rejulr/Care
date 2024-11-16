@@ -7,13 +7,15 @@ import SplashScreen from 'react-native-splash-screen';
 import {useAppStore} from '../data';
 import {
   CustomDateRange,
+  EnhancedMessages,
   ManageAppointment,
   Onboarding,
   Verification,
   VerificationStatus,
+  VideoCall,
 } from '../screens';
 import {Capture} from '../screens/Capture';
-import {isEmpty} from '../utils';
+import {isAndroid, isEmpty} from '../utils';
 import {AppStackParamList} from './AppStackParamList';
 import {HomeNavigator} from './HomeNavigator';
 export const AppStack = () => {
@@ -62,6 +64,7 @@ export const AppStack = () => {
       initialRouteName="Onboarding"
       screenOptions={{
         headerShown: false,
+        animation: isAndroid ? 'none' : 'ios',
         contentStyle: {backgroundColor: 'white'},
       }}>
       {user ? (
@@ -71,7 +74,7 @@ export const AppStack = () => {
               name="VerificationStatus"
               component={VerificationStatus}
             />
-          ) : verificationStatus === 'not_started' ? (
+          ) : verificationStatus === 'dnot_started' ? (
             <>
               <Stack.Screen
                 name="Verification"
@@ -85,6 +88,8 @@ export const AppStack = () => {
           ) : (
             <>
               <Stack.Screen name="HomeTab" component={HomeNavigator} />
+              <Stack.Screen name="Messages" component={EnhancedMessages} />
+              <Stack.Screen name="VideoCall" component={VideoCall} />
               <Stack.Screen
                 name="ManageAppointment"
                 component={ManageAppointment}

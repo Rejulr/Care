@@ -14,7 +14,7 @@ import {
   Profile as ProfileTab,
 } from '../assets/svgs';
 import {TabIcon} from '../components';
-import {Chat, Earning, Home, Profile} from '../screens';
+import {Earning, EnhancedChat, Home, Profile} from '../screens';
 import {Appointment} from '../screens/Appointment';
 import {colors} from '../theme';
 import {$tabBar, $tabLabel} from './style';
@@ -26,6 +26,8 @@ export const HomeNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        unmountOnBlur: true,
+
         headerBackgroundContainerStyle: {backgroundColor: colors.white},
         headerShown: false,
         tabBarShowLabel: false,
@@ -73,8 +75,9 @@ export const HomeNavigator = () => {
       />
       <Tab.Screen
         name="Chat"
-        component={Chat}
+        component={EnhancedChat}
         options={{
+          lazy: false,
           tabBarIcon: ({focused}) => (
             <TabIcon
               activeIcon={<ChatActive />}

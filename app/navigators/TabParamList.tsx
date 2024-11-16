@@ -7,4 +7,4 @@ export type TabParamList = {
   Earning: undefined;
   Profile: undefined;
 };
-export type StackNavigation = NavigationProp<TabParamList>;
+export type StackTabNavigation = NavigationProp<TabParamList>;
