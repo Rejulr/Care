@@ -43,17 +43,27 @@ export const observeUnreadCount = (id: string) =>
 export const observeDeliveryStatus = () =>
   messageCollection.query().observeWithColumns(['delivery_status']);
 
+export const offlineMessages = async () => {
+  const pendingMessages = await messageCollection
+    .query(Q.where('delivery_status', 'pending'))
+    .fetch();
+
+  return pendingMessages;
+};
 export const updateAllDeliveryStatus = async (
   deliveryStatus: string,
-  patient: string,
+  value: string,
+  column: string,
 ) => {
   const findMessage = await messageCollection.query(
-    Q.where('patient', patient),
-    Q.where('delivery_status', 'delivered'),
+    Q.where(column, value),
+    Q.where('delivery_status', Q.oneOf(['delivered', 'sent'])),
   );
+
   const findChannel = await channelCollection.query(
-    Q.where('patient', patient),
-    Q.where('delivery_status', 'delivered'),
+    Q.where(column, value),
+    Q.where('delivery_status', Q.oneOf(['delivered', 'sent'])),
+
     Q.take(1),
   );
 

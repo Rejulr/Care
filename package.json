@@ -16,6 +16,7 @@
     "@invertase/react-native-apple-authentication": "^2.4.0",
     "@marceloterreiro/flash-calendar": "^1.1.0",
     "@nozbe/watermelondb": "^0.27.1",
+    "@react-native-community/netinfo": "^11.4.1",
     "@react-native-firebase/app": "^21.0.0",
     "@react-native-firebase/auth": "^21.0.0",
     "@react-native-firebase/database": "^21.2.0",

@@ -21,12 +21,13 @@ import {$tabBar, $tabLabel} from './style';
 import {TabParamList} from './TabParamList';
 
 export const HomeNavigator = () => {
-  console.log('hometab');
   const Tab = createBottomTabNavigator<TabParamList>();
 
   return (
     <Tab.Navigator
       screenOptions={{
+        unmountOnBlur: true,
+
         headerBackgroundContainerStyle: {backgroundColor: colors.white},
         headerShown: false,
         tabBarShowLabel: false,

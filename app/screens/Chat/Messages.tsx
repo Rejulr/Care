@@ -20,6 +20,7 @@ import {
   observeMessage,
   observeUnreadCount,
   sendMessage,
+  updateAllDeliveryStatus,
   updateDeliveryStatus,
 } from '../../db/helper';
 import MessagesModel from '../../db/messagesModel';
@@ -46,9 +47,12 @@ const Messages = ({messages, unread}: MessagesProps) => {
   }, []);
 
   useEffect(() => {
+    (async () => {
+      await updateAllDeliveryStatus('read', patientID, 'patient');
+    })();
     if (unread > 0) {
-      socket.emit('read', {
-        deliveryStatus: 'delivered',
+      socket.volatile.emit('read', {
+        deliveryStatus: 'read',
         doctor: UID,
         patient: patientID,
       });
@@ -91,12 +95,11 @@ const Messages = ({messages, unread}: MessagesProps) => {
   };
 
   const emitMessage = (msgPayload: any, id: string) => {
-    socket.emit(
+    socket.volatile.emit(
       'message',
       {...msgPayload, messageID: id},
       async (response: any) => {
         const {deliveryStatus, messageID} = response;
-        console.log(deliveryStatus, messageID);
         await updateDeliveryStatus(deliveryStatus, messageID);
       },
     );

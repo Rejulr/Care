@@ -6,34 +6,72 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {theme} from './theme';
 
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import {useNetInfo} from '@react-native-community/netinfo';
 import {
   createNavigationContainerRef,
   NavigationContainer,
 } from '@react-navigation/native';
-import {useAppStore} from './data';
 import {
+  offlineMessages,
   sendMessage,
   updateAllDeliveryStatus,
   updateDeliveryStatus,
 } from './db/helper';
+import {useUser} from './hooks';
 import {AppStack} from './navigators/AppStack';
 import socket from './services/socket';
 
 function App(): React.JSX.Element {
   //fix specialty value
-  const {UID} = useAppStore();
+  const {uid: UID} = useUser();
   const navigationRef = createNavigationContainerRef<any>();
+  const {isConnected} = useNetInfo();
+
+  useEffect(() => {
+    if (isConnected && !socket.connected) {
+      socket.connect();
+      socket.emit('join', UID);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
 
   useEffect(() => {
     async function onConnect() {
-      console.log('Connected');
+      const messages = await offlineMessages();
+
+      messages.map(item => {
+        socket.emit(
+          'message',
+          {
+            doctor: UID,
+            messageID: item.id,
+            message: item.message,
+            patient: item.patient,
+            sender: UID,
+            deliveryStatus: 'sent',
+          },
+          async (response: any) => {
+            //Waiting for a status from the server not from the receiver.
+            const {deliveryStatus, messageID} = response;
+            await updateDeliveryStatus(deliveryStatus, messageID);
+          },
+        );
+      });
+      if (UID?.length! > 10) {
+        socket.emit(
+          'sync',
+          {
+            uid: UID,
+            role: 'doctor',
+          },
+          async () => {},
+        );
+      }
     }
 
-    function onDisconnect() {
-      console.log('Disconnected');
-    }
+    function onDisconnect() {}
 
-    async function receiveMessage(data: any, callback) {
+    async function receiveMessage(data: any, callback: any) {
       const {doctor, message, sender, patient} = data;
       await sendMessage({
         deliveryStatus: 'delivered',
@@ -48,13 +86,12 @@ function App(): React.JSX.Element {
     }
 
     async function updateStatus(response: any) {
-      console.log(response);
-      const {deliveryStatus: status, patient, messageID, type} = response;
+      const {deliveryStatus: status, messageID, type, doctor} = response;
       //emit delivered if successful
       if (type === 'single') {
         await updateDeliveryStatus(status, messageID);
       } else {
-        await updateAllDeliveryStatus(status, patient);
+        await updateAllDeliveryStatus('read', doctor, 'sender');
       }
     }
 

@@ -106,13 +106,10 @@ export const VideoCall = () => {
         mediaStream.getTracks().map(track => {
           peerConnection.addTrack(track, mediaStream);
         });
-      } catch (err) {
-        console.log('Media Stream', err);
-      }
+      } catch (err) {}
     })();
 
     socket.on('receivedOffer', async data => {
-      console.log(data);
       const {offerDescription} = data;
       try {
         // Use the received answerDescription
@@ -125,7 +122,6 @@ export const VideoCall = () => {
     });
 
     socket.on('candidate', async data => {
-      console.log('candidate signaling');
       const {icecandidate} = data;
       await peerConnection
         .addIceCandidate(
@@ -135,12 +131,8 @@ export const VideoCall = () => {
             sdpMid: icecandidate.sdpMid,
           }),
         )
-        .then(() => {
-          console.log('Remote Candidate Added');
-        })
-        .catch(e => {
-          console.log(e);
-        });
+        .then(() => {})
+        .catch(() => {});
       // handleRemoteCandidate(candidate);
     });
 
@@ -171,7 +163,7 @@ export const VideoCall = () => {
       //handleRemoteCandidate(event.candidate);
 
       // Send the event.candidate onto the person you're calling.
-      socket.emit('candidate', {
+      socket.volatile.emit('candidate', {
         icecandidate: {
           candidate: event.candidate.candidate,
           sdpMLineIndex: event.candidate.sdpMLineIndex,
@@ -201,7 +193,7 @@ export const VideoCall = () => {
     peerConnection.addEventListener('negotiationneeded', () => {
       // You can start the offer stages here.
       // Be careful as this event can be called multiple times.
-      console.log('Local stream has been added to peerConnection');
+      //Local stream has been added to peerConnection
       callOffer();
     });
 
@@ -269,7 +261,7 @@ export const VideoCall = () => {
       );
       await peerConnection.setLocalDescription(offerDescription);
 
-      socket.emit(
+      socket.volatile.emit(
         'offer',
         {
           offer: offerDescription,
@@ -350,7 +342,7 @@ export const VideoCall = () => {
     try {
       const answerDescription = await peerConnection.createAnswer();
       await peerConnection.setLocalDescription(answerDescription);
-      socket.emit('answeredOffer', {
+      socket.volatile.emit('answeredOffer', {
         offerDescription: answerDescription,
         doctor: patientID,
       });
@@ -359,7 +351,6 @@ export const VideoCall = () => {
       InCallManager.stopRingback();
     } catch (err) {
       // Handle Errors
-      console.log('errrorr', err);
     }
   };
 
