@@ -25,7 +25,7 @@ export const colors = {
   //Speciality
   orangeLight: '#FEF1E6',
   orangeDark: '#FD995C',
-
+  grey: '#F8F9FA',
   greenLight: '#E6F8F1',
   greenDark: '#02B974',
 
