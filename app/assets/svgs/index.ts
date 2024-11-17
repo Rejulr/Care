@@ -57,15 +57,26 @@ import Send from './send.svg';
 import Sent from './sent.svg';
 import StartTime from './startTime.svg';
 import Video from './video.svg';
+import Lock from './lock.svg';
+import Trash from './trash.svg';
+import Verified from './verified.svg';
+import Logout from './logout.svg';
+import ArrowRight from './arrow-right.svg';
 import VideoCall from './videocall.svg';
 
 export {
   Apple,
   ArrowBackAndroid,
   ArrowBackiOS,
+  Verified,
+
   Attachment,
+  ArrowRight,
   Calender,
   CalenderActive,
+  Lock,
+  Logout,
+  Trash,
   CalenderTab,
   Call,
   CallDown,

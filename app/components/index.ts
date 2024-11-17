@@ -17,6 +17,7 @@ import {ProgressBar} from './ProgressBar';
 import {RadioButtons} from './Radio';
 import {Screen} from './Screen';
 import {TabIcon} from './TabIcon';
+import {ProfileItem} from './Profile';
 import {Text} from './Text';
 import {AppointmentTimeline} from './Timeline';
 import {Call,IncomingCall} from './VideoCall';
@@ -30,6 +31,7 @@ export {
   AppointmentTimeline,
   AuthModal,
   Avatar,
+  ProfileItem,
   Call,
   Box,
   IncomingCall,

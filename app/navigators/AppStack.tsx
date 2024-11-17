@@ -65,7 +65,6 @@ export const AppStack = () => {
       screenOptions={{
         headerShown: false,
         animation: isAndroid ? 'none' : 'ios',
-        contentStyle: {backgroundColor: 'white'},
       }}>
       {user ? (
         <>

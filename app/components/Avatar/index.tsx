@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import FastImage from 'react-native-fast-image';
+import {spacing} from '../../theme/spacing';
 import {Box} from '../Box';
 import {$fastImage} from '../Timeline/styles';
 import {$widthHeightStyle} from './styles';
@@ -32,7 +33,7 @@ export const Avatar = ({
   // });
 
   return (
-    <Box>
+    <Box backgroundColor="primary" borderRadius={spacing.borderRadius}>
       <FastImage
         style={[$fastImage, $widthHeightStyle(wnh)]}
         source={{
