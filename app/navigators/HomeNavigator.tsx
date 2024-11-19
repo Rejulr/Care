@@ -26,8 +26,6 @@ export const HomeNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        unmountOnBlur: true,
-
         headerBackgroundContainerStyle: {backgroundColor: colors.white},
         headerShown: false,
         tabBarShowLabel: false,
@@ -77,7 +75,7 @@ export const HomeNavigator = () => {
         name="Chat"
         component={EnhancedChat}
         options={{
-          lazy: false,
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => (
             <TabIcon
               activeIcon={<ChatActive />}

@@ -4,7 +4,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Pressable} from 'react-native';
 import CalendarStrip from 'react-native-calendar-strip';
 import {CalenderTab} from '../../assets/svgs';
-import {AppointmentTimeline, Box, Screen} from '../../components';
+import {
+  AppointmentTimeline,
+  Box,
+  NoAppointment,
+  Screen,
+} from '../../components';
+import {CircularLoader} from '../../components/Loader';
 import {Header} from '../../components/Verification';
 import {useFirestore} from '../../hooks';
 import {StackNavigation} from '../../navigators';
@@ -20,7 +26,7 @@ export const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState<string>();
   const [appointments, setAppointments] = useState<any[]>([]);
   const endOfTheYear = new Date(new Date().getFullYear(), 11, 31);
-  const {appointmentTiming, data, getUser} = useFirestore();
+  const {appointmentTiming, data, getUser, loading} = useFirestore();
 
   const onPress = () => {
     navigation.navigate('ManageAppointment');
@@ -114,7 +120,21 @@ export const Appointment = () => {
         dateNumberStyle={$dateNumberStyle}
         dateNameStyle={$dateNameStyle}
       />
-      <AppointmentTimeline appointments={appointments} />
+      {loading ? (
+        <Box flex={1} justifyContent="center" alignItems="center">
+          <CircularLoader isLoading={loading} />
+        </Box>
+      ) : (
+        <Box flex={1}>
+          {appointments.length === 0 ? (
+            <NoAppointment />
+          ) : (
+            <>
+              <AppointmentTimeline appointments={appointments} />
+            </>
+          )}
+        </Box>
+      )}
     </Screen>
   );
 };

@@ -6,12 +6,12 @@ export const isRTL = I18nManager.isRTL ? true : false;
 export const UUID = () => {
   return Math.floor(Math.random() * Date.now());
 };
-export const FADE_IN = (delay: number) =>
+export const FADE_IN = (value: number) =>
   FadeInDown.springify()
     .damping(30)
     .mass(5)
     .stiffness(10)
-    .delay(delay)
+    .delay(value)
     .duration(3000);
 
 export const MONTH_NAMES = [
@@ -66,7 +66,9 @@ export const formatDate = (dob: Date) => {
     MONTH_NAMES[dateObj.getMonth()]
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
-
+export function delay(duration: number) {
+  return new Promise(resolve => setTimeout(resolve, duration));
+}
 export const isDateValid = (dob: Date) => {
   const isValid = !dob || (dob instanceof Date && isNaN(dob.getTime()));
 
@@ -78,7 +80,7 @@ export const formatTiming = (start: any, end: any) => {
   const startTime = new Date(start);
   const endTime = new Date(end);
 
-  return `${formatAMPM(startTime)} to ${formatAMPM(endTime)}`;
+  return `${formatAMPM(startTime)} - ${formatAMPM(endTime)}`;
 };
 
 export const formatAMPM = (date: Date) => {
@@ -97,8 +99,6 @@ export const formatAMPM = (date: Date) => {
     return strTime;
   }
 };
-export const delay = (ms: number) =>
-  new Promise(resolve => setTimeout(resolve, ms));
 
 export function isEmpty(str: string) {
   return !str || str.length === 0;

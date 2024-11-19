@@ -13,3 +13,7 @@ export const $item: ViewStyle = {
   marginTop: spacing.xs,
   marginLeft: spacing.n,
 };
+export const $bottomView: ViewStyle = {
+  flex: 1,
+  paddingTop: 20,
+};
