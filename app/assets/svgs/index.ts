@@ -62,16 +62,23 @@ import Trash from './trash.svg';
 import Verified from './verified.svg';
 import Logout from './logout.svg';
 import ArrowRight from './arrow-right.svg';
+import Clipboard from './clipboard.svg';
 import VideoCall from './videocall.svg';
+import TimeFill from './timefill.svg';
+import Users from './users.svg';
+import ChatFill from './chatfill.svg';
 
 export {
   Apple,
   ArrowBackAndroid,
   ArrowBackiOS,
   Verified,
-
+  TimeFill,
+  Clipboard,
   Attachment,
+  Users,
   ArrowRight,
+  ChatFill,
   Calender,
   CalenderActive,
   Lock,

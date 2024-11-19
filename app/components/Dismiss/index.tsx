@@ -15,10 +15,12 @@ type DismissProps = {
   rightButtonOnPress?: () => void;
   title?: string;
   isModal?: boolean;
+  modalOnPress?: () => void;
 };
 export const Dismiss = ({
   wnh,
   title,
+  modalOnPress,
   isModal = false,
   rightButtonOnPress,
   rightButtonLabel,
@@ -34,7 +36,7 @@ export const Dismiss = ({
       <Box style={[$container, $widthHeightStyle(wnh), title && $border]}>
         <RectButton
           hitSlop={50}
-          onPress={onPress}
+          onPress={isModal ? modalOnPress : onPress}
           style={[$button, $widthHeightStyle(wnh)]}>
           {isModal ? (
             <Cancel />

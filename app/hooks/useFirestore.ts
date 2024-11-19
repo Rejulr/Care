@@ -4,10 +4,13 @@ import firestore, {
 import {useState} from 'react';
 import {useAppStore} from '../data';
 import {APPOINTMENTS, USERS} from '../services';
-import {isDateValid} from '../utils';
+import {delay, isDateValid} from '../utils';
 
 export const useFirestore = () => {
+  //REMOVE
   const [hasReceived, setHasReceived] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+
   const [error, setError] = useState<boolean>();
   const {
     UID,
@@ -75,22 +78,23 @@ export const useFirestore = () => {
 
       const newData = collection.docs.map(doc => ({...doc.data()}));
       setData(newData);
-      setHasReceived(true);
+      await delay(2500);
+      setLoading(false);
     } catch (_) {
+      setLoading(false);
       setError(true);
     }
   };
 
   const getUser = async (userID: string) => {
-    const user = (
-      await firestore().collection(USERS).doc(userID).get()
-    ).data();
+    const user = (await firestore().collection(USERS).doc(userID).get()).data();
     return user;
   };
 
   return {
     verification,
     hasReceived,
+    loading,
     error,
     getUser,
     data,

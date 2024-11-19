@@ -174,7 +174,7 @@ export const Call = ({
                 justifyContent="center"
                 alignItems="center"
                 backgroundColor="white">
-                {isCamOn ? <VideoOn /> : <VideoOff />}
+                {isCamOn ? <VideoOn fill="#fff" /> : <VideoOff />}
               </Box>
             </Pressable>
             <Pressable onPress={handleMic}>

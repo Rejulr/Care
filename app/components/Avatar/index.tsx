@@ -33,7 +33,11 @@ export const Avatar = ({
   // });
 
   return (
-    <Box backgroundColor="primary" borderRadius={spacing.borderRadius}>
+    <Box
+      width={wnh ? wnh : 40}
+      height={wnh ? wnh : 40}
+      backgroundColor="primary"
+      borderRadius={spacing.borderRadius}>
       <FastImage
         style={[$fastImage, $widthHeightStyle(wnh)]}
         source={{
