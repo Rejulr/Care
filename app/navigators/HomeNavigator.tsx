@@ -8,13 +8,11 @@ import {
   Chat as ChatTab,
   EarningActive,
   Earning as EarningTab,
-  HomeActive,
-  HomeTab,
   ProfileActive,
   Profile as ProfileTab,
 } from '../assets/svgs';
 import {TabIcon} from '../components';
-import {Earning, EnhancedChat, Home, Profile} from '../screens';
+import {Earning, EnhancedChat, Profile} from '../screens';
 import {Appointment} from '../screens/Appointment';
 import {colors} from '../theme';
 import {$tabBar, $tabLabel} from './style';
@@ -32,7 +30,7 @@ export const HomeNavigator = () => {
         tabBarLabelStyle: $tabLabel,
         tabBarStyle: $tabBar,
       }}>
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -44,7 +42,7 @@ export const HomeNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Appointment"
         component={Appointment}
