@@ -2,7 +2,7 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
 import {useState} from 'react';
-import {useAppStore} from '../data';
+import {localStore} from '../data';
 import {APPOINTMENTS, USERS} from '../services';
 import {delay, isDateValid} from '../utils';
 
@@ -24,7 +24,7 @@ export const useFirestore = () => {
     dateRange,
     customRange,
     workingHours,
-  } = useAppStore();
+  } = localStore();
   const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData[]>([]);
 
   const verification = async (qualification: string, selfie: string) => {

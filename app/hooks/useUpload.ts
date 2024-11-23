@@ -1,11 +1,11 @@
 import storage from '@react-native-firebase/storage';
 import {useState} from 'react';
-import {useAppStore} from '../data';
+import {localStore} from '../data';
 
 const useUpload = () => {
   const [documentUploaded, setDocumentUploaded] = useState<boolean>(false);
   const [uploadError, setUploadError] = useState<boolean>(false);
-  const {qualification, addSelfie, addQualification, selfie} = useAppStore();
+  const {qualification, addSelfie, addQualification, selfie} = localStore();
   const uploadDocument = () => {
     [selfie, qualification].map((filePath, index: number) => {
       const extension = filePath.split('.').pop();

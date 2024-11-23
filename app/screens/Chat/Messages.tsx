@@ -14,7 +14,7 @@ import {
 } from '../../components';
 import {$input} from '../../components/Chat/styles';
 import {$container} from '../../components/LinearGradient/styles';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {
   addChannel,
   observeMessage,
@@ -36,7 +36,7 @@ type MessagesProps = {
 
 const Messages = ({messages, unread}: MessagesProps) => {
   const {params} = useRoute<RouteProp<AppStackParamList, 'Messages'>>();
-  const {UID} = useAppStore();
+  const {UID} = localStore();
   // const navigation = useNavigation<StackTabNavigation>();
   const {patientID, channelName, channelSelfie} = params;
   const [messageInput, setMessageInput] = useState<string>('');

@@ -5,7 +5,7 @@ import {
 } from '@marceloterreiro/flash-calendar';
 import React, {useEffect} from 'react';
 import {Dismiss, Screen} from '../../components';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 
 export const CustomDateRange = () => {
   const today = toDateId(new Date());
@@ -22,7 +22,7 @@ export const CustomDateRange = () => {
     // onClearDateRange, // () => void
   } = useDateRange();
   const {startId, endId} = dateRange;
-  const {addCustomRange, addDateRange} = useAppStore();
+  const {addCustomRange, addDateRange} = localStore();
   useEffect(() => {
     if (dateRange.endId) {
       addDateRange(startId + '/' + endId);

@@ -15,7 +15,7 @@ import {
   Users,
   VideoOn,
 } from '../../assets/svgs';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {StackNavigation} from '../../navigators';
 import {formatDate, formatTiming, moderateScale} from '../../utils';
 import {$indicator} from '../AuthModal/style';
@@ -35,7 +35,7 @@ export const AppointmentTimeline = ({appointments}: AppointmentTimeline) => {
   const snapPoints = useMemo(() => ['1', '100%'], []);
   const navigation = useNavigation<StackNavigation>();
   const [patient, setPatient] = useState<any>();
-  const {fullName} = useAppStore();
+  const {fullName} = localStore();
 
   const bottomSheetModalRef = useRef<BottomSheetModalMethods>(null);
 
@@ -50,7 +50,7 @@ export const AppointmentTimeline = ({appointments}: AppointmentTimeline) => {
   const NOW = new Date().toString();
   //I observe some issue with moment()
   const Today = moment(NOW);
-  const {specialty} = useAppStore();
+  const {specialty} = localStore();
   const closeModal = () => {
     bottomSheetModalRef.current?.close();
   };

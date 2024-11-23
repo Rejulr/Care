@@ -1,10 +1,10 @@
 import React from 'react';
 import {Box, Gradient, Screen, Text} from '../../components';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {moderateScale} from '../../utils';
 
 export const VerificationStatus = () => {
-  const {fullName} = useAppStore();
+  const {fullName} = localStore();
 
   return (
     <Gradient colors={['#D5FFEE', '#FCEFE9']}>

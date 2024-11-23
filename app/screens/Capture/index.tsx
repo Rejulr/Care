@@ -6,13 +6,13 @@ import {
   useCameraPermission,
 } from 'react-native-vision-camera';
 import {CameraButton} from '../../components';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {AppStackParamList, StackNavigation} from '../../navigators';
 
 export const Capture = () => {
   const navigation = useNavigation<StackNavigation>();
   const {params} = useRoute<RouteProp<AppStackParamList, 'Capture'>>();
-  const {addSelfie, addQualification} = useAppStore();
+  const {addSelfie, addQualification} = localStore();
   const [capture, setCapture] = useState<boolean>();
   const camera = useRef<Camera>(null);
   const device = useCameraDevice(params?.type === 'SELFIE' ? 'front' : 'back');

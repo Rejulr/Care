@@ -5,14 +5,14 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {MarkCheck, Upload} from '../../assets/svgs';
 import {Box, Text} from '../../components';
 import {Header} from '../../components/Verification';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {StackNavigation} from '../../navigators';
 import {spacing} from '../../theme/spacing';
 import {moderateScale} from '../../utils';
 import {$container, $scrollContainer, $selfieContainer} from './styles';
 export const Document = () => {
   const navigation = useNavigation<StackNavigation>();
-  const {selfie, qualification, addIdentityStep} = useAppStore();
+  const {selfie, qualification, addIdentityStep} = localStore();
 
   useEffect(() => {
     return () => {

@@ -11,12 +11,12 @@ import {
 } from '../../components';
 import {InputField} from '../../components/Form';
 import {Header} from '../../components/Verification';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {StackNavigation} from '../../navigators';
 
 export const Basic = () => {
   const navigation = useNavigation<StackNavigation>();
-  const {fee, addFee, dateRange} = useAppStore();
+  const {fee, addFee, dateRange} = localStore();
   const {control, watch, getValues} = useForm<{fee: string}>({
     defaultValues: {fee},
   });

@@ -1,14 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Screen} from '../../components';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {useFirestore} from '../../hooks';
 import {Basic, WorkingHours} from '../../layout';
 import {StackNavigation} from '../../navigators';
 import {isDateValid} from '../../utils';
 
 export const ManageAppointment = () => {
-  const {fee, dateRange, workingHours} = useAppStore();
+  const {fee, dateRange, workingHours} = localStore();
   const {error, updateDoctorSchedule, hasReceived} = useFirestore();
   const [isLoading, setLoading] = useState<boolean>(false);
   const navigation = useNavigation<StackNavigation>();
