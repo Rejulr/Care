@@ -17,12 +17,12 @@ import {
 } from '../../assets/svgs';
 import {AnimatedBox, Box, Text} from '../../components';
 import {Header} from '../../components/Verification';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {spacing} from '../../theme/spacing';
 import {moderateScale} from '../../utils';
 
 export const Specialty = () => {
-  const {specialty, addSpecialty, addSpecialtyStep} = useAppStore();
+  const {specialty, addSpecialty, addSpecialtyStep} = localStore();
   const width = Dimensions.get('window').width - 38;
   const ITEM = [
     {

@@ -2854,6 +2854,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@notifee/react-native@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "@notifee/react-native@npm:9.1.2"
+  peerDependencies:
+    react-native: "*"
+  checksum: 1cf39654ed9679992f098e7df1586d47a65239297903ab57c76ca5834641d9171f8d2d3a337c8453950c9f6ee2cea1b5388093e1a386e7a89eceb96bf27ef374
+  languageName: node
+  linkType: hard
+
 "@nozbe/simdjson@npm:3.1.0-wmelon1":
   version: 3.1.0-wmelon1
   resolution: "@nozbe/simdjson@npm:3.1.0-wmelon1"
@@ -3210,6 +3219,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-firebase/messaging@npm:^21.6.0":
+  version: 21.6.0
+  resolution: "@react-native-firebase/messaging@npm:21.6.0"
+  peerDependencies:
+    "@react-native-firebase/app": 21.6.0
+    expo: ">=47.0.0"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: a869e6e2ae342c29e62d24327a5a352648a20dfeb6bdf2bda4c3291e2f016684acf58c95a3ce6cf89ba4fad931a212e208a92a1a3b55c2176116d754b99c7295
+  languageName: node
+  linkType: hard
+
 "@react-native-firebase/storage@npm:^21.0.0":
   version: 21.0.0
   resolution: "@react-native-firebase/storage@npm:21.0.0"
@@ -3348,6 +3370,13 @@ __metadata:
   version: 0.75.4
   resolution: "@react-native/debugger-frontend@npm:0.75.4"
   checksum: b99bf4ddbda9b88dc974cc418483dfb9bb2887525df6fe9fa9abb894b0304bcf061781d86a8bc52505c5b0c60966704c4e8a1c4f4b2e6f1f47be8c28b3158d9b
+  languageName: node
+  linkType: hard
+
+"@react-native/debugger-frontend@npm:^0.76.3":
+  version: 0.76.3
+  resolution: "@react-native/debugger-frontend@npm:0.76.3"
+  checksum: 549fea784b9e03a0e4bb05befea92af096705595e34fa6540873b1f00641ceaac3dafaeda212dd80d049f82d0929852c7fb1870bd823158ad780a5c2edfdcf0a
   languageName: node
   linkType: hard
 
@@ -4210,15 +4239,18 @@ __metadata:
     "@gorhom/bottom-sheet": ^4.6.4
     "@invertase/react-native-apple-authentication": ^2.4.0
     "@marceloterreiro/flash-calendar": ^1.1.0
+    "@notifee/react-native": ^9.1.2
     "@nozbe/watermelondb": ^0.27.1
     "@react-native-community/netinfo": ^11.4.1
     "@react-native-firebase/app": ^21.0.0
     "@react-native-firebase/auth": ^21.0.0
     "@react-native-firebase/database": ^21.2.0
     "@react-native-firebase/firestore": ^21.0.0
+    "@react-native-firebase/messaging": ^21.6.0
     "@react-native-firebase/storage": ^21.0.0
     "@react-native-google-signin/google-signin": latest
     "@react-native/babel-preset": 0.75.4
+    "@react-native/debugger-frontend": ^0.76.3
     "@react-native/eslint-config": 0.75.4
     "@react-native/metro-config": 0.75.4
     "@react-native/typescript-config": 0.75.4

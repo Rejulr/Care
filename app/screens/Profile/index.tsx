@@ -3,19 +3,18 @@ import React from 'react';
 import {Lock, Logout, Trash, Verified} from '../../assets/svgs';
 import {Avatar, Box, ProfileItem, Screen, Text} from '../../components';
 import {Header} from '../../components/Verification';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {colors} from '../../theme';
 import {spacing} from '../../theme/spacing';
 import {moderateScale} from '../../utils';
 
 export const Profile = () => {
   //specialty, gender,
-  const {fullName, email} = useAppStore();
+  const {fullName, email} = localStore();
   const signOut = async () => {
     await auth().signOut();
   };
   return (
-
     <Screen styles={{backgroundColor: colors.grey}} useDefault>
       <Box backgroundColor="grey" flex={1} paddingHorizontal="l">
         <Box mt="l">

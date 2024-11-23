@@ -4,7 +4,7 @@ import {Pressable, ScrollView} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {FormInfo} from '.';
 import {CancelWhite, Dropdown, EndTime, StartTime} from '../../assets/svgs';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {formatAMPM, isDateValid} from '../../utils';
 import {Box} from '../Box';
 import {$textInput} from '../Form/Input/styles';
@@ -26,7 +26,7 @@ export const WorkingHoursForm = ({
   removeItem,
   updateItem,
 }: WorkingHoursFormProps) => {
-  const {addWorkingHours, workingHours} = useAppStore();
+  const {addWorkingHours, workingHours} = localStore();
   const scrollViewRef = useRef<ScrollView>(null);
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(new Date());

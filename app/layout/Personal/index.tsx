@@ -12,7 +12,7 @@ import {
 import {Pressable} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {formatDate, moderateScale} from '../../utils';
 
 type IBasicInformation = {
@@ -33,7 +33,7 @@ export const PersonalInformation = () => {
     addFullName,
     addBio,
     addPersonalInformationStep,
-  } = useAppStore();
+  } = localStore();
 
   const {control, watch, getValues} = useForm<IBasicInformation>({
     defaultValues: {fullName: fullName, email},

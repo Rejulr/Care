@@ -1,12 +1,12 @@
 import React from 'react';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {colors} from '../../theme';
 import {horizontalScale} from '../../utils';
 import {Box} from '../Box';
 import {ProgressBar} from '../ProgressBar';
 
 export const VerificationHeader = () => {
-  const {personalInformationStep, specialtyStep} = useAppStore();
+  const {personalInformationStep, specialtyStep} = localStore();
   const DEFAULT_WIDTH = 33.33;
   const progress =
     personalInformationStep && specialtyStep

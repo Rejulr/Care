@@ -2,7 +2,7 @@ import {withObservables} from '@nozbe/watermelondb/react';
 import {useNavigation} from '@react-navigation/native';
 import React, {memo} from 'react';
 import {Pressable} from 'react-native';
-import {useAppStore} from '../../../data';
+import {localStore} from '../../../data';
 import ChannelModel from '../../../db/channelModel';
 import {observeChannelCount, observeUnreadCount} from '../../../db/helper';
 import {StackNavigation} from '../../../navigators';
@@ -19,7 +19,7 @@ type ChannelListItemProps = {
 };
 
 const ChannelListItem = memo(({channel, unread}: ChannelListItemProps) => {
-  const {UID} = useAppStore();
+  const {UID} = localStore();
   const navigation = useNavigation<StackNavigation>();
 
   const onPress = () => {

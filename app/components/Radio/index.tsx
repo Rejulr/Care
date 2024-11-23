@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Pressable} from 'react-native';
 import {Radio, RadioActive} from '../../assets/svgs';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {Box} from '../Box';
 import {Text} from '../Text';
 
@@ -10,7 +10,7 @@ type RadioButtonsProps = {
   onCustomPress: () => void;
 };
 export const RadioButtons = ({title, onCustomPress}: RadioButtonsProps) => {
-  const {addDateRange, addCustomRange, dateRange} = useAppStore();
+  const {addDateRange, addCustomRange, dateRange} = localStore();
 
   const isCustomDate = dateRange.includes('/');
   const [active, setActive] = useState<string>();

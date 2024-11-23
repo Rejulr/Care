@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Screen, VerificationHeader} from '../../components';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {useFirestore} from '../../hooks';
 import useUpload from '../../hooks/useUpload';
 import {Document, PersonalInformation, Specialty} from '../../layout';
@@ -9,7 +9,7 @@ import {StackNavigation} from '../../navigators';
 
 export const Verification = () => {
   const {gender, fullName, email, dob, bio, specialty, selfie, qualification} =
-    useAppStore();
+    localStore();
   const {uploadDocument, uploadError} = useUpload();
   const {verification, hasReceived, error} = useFirestore();
   const [isLoading, setLoading] = useState<boolean>(false);

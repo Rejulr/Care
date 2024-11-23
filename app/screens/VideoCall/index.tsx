@@ -18,12 +18,12 @@ import {
 } from 'react-native-webrtc';
 
 import {Call, IncomingCall} from '../../components';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {AppStackParamList, StackNavigation} from '../../navigators';
 import socket from '../../services/socket';
 
 export const VideoCall = () => {
-  const {UID, fullName, specialty} = useAppStore();
+  const {UID, fullName, specialty} = localStore();
   const {params} = useRoute<RouteProp<AppStackParamList, 'VideoCall'>>();
   const navigation = useNavigation<StackNavigation>();
   const {incomingCall, patientID, patientName, avatar, offer} = params;

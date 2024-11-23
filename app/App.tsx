@@ -1,12 +1,15 @@
+import messaging from '@react-native-firebase/messaging';
 import {ThemeProvider} from '@shopify/restyle';
 import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
+
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {theme} from './theme';
 
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {useNetInfo} from '@react-native-community/netinfo';
+import firestore from '@react-native-firebase/firestore';
 import {
   createNavigationContainerRef,
   NavigationContainer,
@@ -20,22 +23,34 @@ import {
 import {useUser} from './hooks';
 import {AppStack} from './navigators/AppStack';
 import socket from './services/socket';
-
 function App(): React.JSX.Element {
   //fix specialty value
   const {uid: UID} = useUser();
   const navigationRef = createNavigationContainerRef<any>();
   const {isConnected} = useNetInfo();
 
+  async function saveTokenToDatabase(token: string) {
+    await firestore().collection('Users').doc(UID).update({
+      fcmToken: token,
+    });
+  }
   useEffect(() => {
     if (isConnected && !socket.connected) {
       socket.connect();
       socket.emit('join', UID);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected]);
 
   useEffect(() => {
+    (async () => {
+      messaging()
+        .getToken()
+        .then(token => {
+          return saveTokenToDatabase(token);
+        });
+    })();
+
     async function onConnect() {
       const messages = await offlineMessages();
 
@@ -125,6 +140,9 @@ function App(): React.JSX.Element {
       socket.off('read', updateStatus);
       socket.emit('left', UID);
       socket.on('incomingCallOffer', handleIncomingCallOffer);
+      messaging().onTokenRefresh(token => {
+        saveTokenToDatabase(token);
+      });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

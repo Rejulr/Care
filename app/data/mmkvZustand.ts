@@ -6,7 +6,6 @@ import {createStepsSlices, STEPSlices} from './step';
 import {createUserSlices, UserSlices} from './user';
 
 export const storage = new MMKV();
-
 export const zustandStorage: StateStorage = {
   setItem: (name, value) => {
     return storage.set(name, value);
@@ -22,7 +21,7 @@ export const zustandStorage: StateStorage = {
 
 export type StoreState = UserSlices & STEPSlices & APPOINTMENTSlices;
 
-export const useAppStore = create<StoreState>()(
+export const localStore = create<StoreState>()(
   persist(
     (...args) => ({
       ...createStepsSlices(...args),

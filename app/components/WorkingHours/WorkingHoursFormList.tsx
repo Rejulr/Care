@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
 import {moderateScale} from '../../utils';
 import {Box} from '../Box';
 import {Text} from '../Text';
@@ -15,7 +15,7 @@ type WorkingHoursFormListProps = {
   addMore: boolean;
 };
 export const WorkingHoursFormList = ({addMore}: WorkingHoursFormListProps) => {
-  const {workingHours, addWorkingHours} = useAppStore();
+  const {workingHours, addWorkingHours} = localStore();
   const emptyTime = new Date('');
 
   const NEW_FORM: FormInfo = {
@@ -28,7 +28,7 @@ export const WorkingHoursFormList = ({addMore}: WorkingHoursFormListProps) => {
     if (addMore) {
       addWorkingHours([...workingHours, NEW_FORM]);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addMore]);
 
   const removeItem = (index: number) => {

@@ -1,13 +1,13 @@
 import React from 'react';
 import {CalenderTab} from '../../assets/svgs';
-import {useAppStore} from '../../data';
+import {localStore} from '../../data';
+import {spacing} from '../../theme/spacing';
 import {dateInfo, moderateScale} from '../../utils';
 import {Box} from '../Box';
 import {Text} from '../Text';
-import { spacing } from '../../theme/spacing';
 
 export const DateRangeInfo = () => {
-  const {dateRange} = useAppStore();
+  const {dateRange} = localStore();
 
   return (
     <Box

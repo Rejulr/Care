@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 
 import {useIsFocused} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
-import {useAppStore} from '../data';
+import {localStore} from '../data';
 import {
   CustomDateRange,
   EnhancedMessages,
@@ -31,7 +31,7 @@ export const AppStack = () => {
     fullName: storeFullName,
     email: storeEmail,
     addUID,
-  } = useAppStore();
+  } = localStore();
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(users => {
@@ -73,7 +73,7 @@ export const AppStack = () => {
               name="VerificationStatus"
               component={VerificationStatus}
             />
-          ) : verificationStatus === 'dnot_started' ? (
+          ) : verificationStatus === 'not_started' ? (
             <>
               <Stack.Screen
                 name="Verification"
@@ -84,7 +84,7 @@ export const AppStack = () => {
               />
               <Stack.Screen name="Capture" component={Capture} />
             </>
-          ) : (
+          ) : verificationStatus === 'verified' ? (
             <>
               <Stack.Screen name="HomeTab" component={HomeNavigator} />
               <Stack.Screen name="Messages" component={EnhancedMessages} />
@@ -102,6 +102,10 @@ export const AppStack = () => {
                   component={CustomDateRange}
                 />
               </Stack.Group>
+            </>
+          ) : (
+            <>
+              <Stack.Screen name="Onboarding" component={Onboarding} />
             </>
           )}
         </>
