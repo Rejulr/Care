@@ -75,14 +75,17 @@ export const isDateValid = (dob: Date) => {
   return !isValid;
 };
 export const formatTiming = (start: any, end: any) => {
-  // const startTime = new Date(start.seconds * 1000);
-  // const endTime = new Date(end.seconds * 1000);
   const startTime = new Date(start);
   const endTime = new Date(end);
 
   return `${formatAMPM(startTime)} - ${formatAMPM(endTime)}`;
 };
+export const startEndTime = (start: any, end: any) => {
+  const startTime = new Date(start.seconds * 1000);
+  const endTime = new Date(end.seconds * 1000);
 
+  return `${formatAMPM(startTime)} - ${formatAMPM(endTime)}`;
+};
 export const formatAMPM = (date: Date) => {
   //using date.getHours() directly invoke an error
   if (date !== undefined && isDateValid(date) && date !== null) {

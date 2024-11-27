@@ -17,7 +17,7 @@ import {
 } from '../../assets/svgs';
 import {localStore} from '../../data';
 import {StackNavigation} from '../../navigators';
-import {formatDate, formatTiming, moderateScale} from '../../utils';
+import {formatDate, moderateScale, startEndTime} from '../../utils';
 import {$indicator} from '../AuthModal/style';
 import {Avatar} from '../Avatar';
 import {Box} from '../Box';
@@ -125,10 +125,11 @@ export const AppointmentTimeline = ({appointments}: AppointmentTimeline) => {
                     fontSize={moderateScale(13)}
                     variant="medium"
                     color="primary">
-                    {formatTiming(
-                      patient?.appointmentTime[0].startTime,
-                      patient?.appointmentTime[0].endTime,
-                    ).toUpperCase()}
+                    {patient?.appointmentTime[0].startTime &&
+                      startEndTime(
+                        patient?.appointmentTime[0].startTime,
+                        patient?.appointmentTime[0].endTime,
+                      )}
                     {/* 9:30 AM - 10:30 AM */}
                   </Text>
                 </Box>
@@ -172,7 +173,7 @@ export const AppointmentTimeline = ({appointments}: AppointmentTimeline) => {
                 </Box>
               </Box>
             </Box>
-            {Today.isSameOrBefore(patient?.appointmentTime[0].startTime) && (
+            {Today.isSameOrAfter(patient?.appointmentTime[0].startTime) && (
               <Box alignItems="center" pb="ll" pt="l" paddingHorizontal="l">
                 <Box gap="l" flexDirection="row">
                   <Button label="Chat" leftIcon={<ChatFill fill="#fff" />} />

@@ -29,7 +29,7 @@ export const localStore = create<StoreState>()(
       ...createAppointmentSlices(...args),
     }),
     {
-      name: 'wellbeingapp-store',
+      name: 'wellbeing_Doctor',
       storage: createJSONStorage(() => zustandStorage),
     },
   ),
