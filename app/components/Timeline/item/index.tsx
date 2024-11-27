@@ -1,7 +1,7 @@
 import React from 'react';
 import {Pressable} from 'react-native';
 import {spacing} from '../../../theme/spacing';
-import {formatTiming, moderateScale} from '../../../utils';
+import {moderateScale, startEndTime} from '../../../utils';
 import {Avatar} from '../../Avatar';
 import {Box} from '../../Box';
 import {Text} from '../../Text';
@@ -65,7 +65,7 @@ export const TimelineItem = ({onPress, item}: TimelineItemProps) => {
                     <Text color="darkLabel">Patient</Text>
 
                     <Text fontSize={moderateScale(14)} color="primary">
-                      {formatTiming(
+                      {startEndTime(
                         appointmentTime[0].startTime,
                         appointmentTime[0].endTime,
                       )}
