@@ -1,5 +1,6 @@
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import React, {useCallback, useRef, useState} from 'react';
+import {StatusBar} from 'react-native';
 import {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {
   AuthModal,
@@ -7,6 +8,7 @@ import {
   OnboardingProgress,
   Screen,
 } from '../../components';
+import {colors} from '../../theme';
 import {IScroll, SCROLL_DEFAULT} from '../../utils';
 
 export const Onboarding = () => {
@@ -37,6 +39,7 @@ export const Onboarding = () => {
       buttonShadow={false}
       buttonLabel={progress.index === 2 ? 'Get Started' : 'Continue'}
       buttonOnPress={openGetStartedModal}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <OnboardingProgress progress={progress} />
       <OnboardingCarousel
         carouselRef={carousel}

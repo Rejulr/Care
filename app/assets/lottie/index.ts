@@ -1,3 +1,3 @@
-import Loader from './loader.json';
+import Loader from './circle_loader.json';
 
 export {Loader};

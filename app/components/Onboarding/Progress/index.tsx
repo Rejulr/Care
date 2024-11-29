@@ -1,6 +1,6 @@
 import React from 'react';
 import {colors} from '../../../theme';
-import {horizontalScale, IScroll} from '../../../utils';
+import {horizontalScale, isAndroid, IScroll} from '../../../utils';
 import {Box} from '../../Box';
 import {ProgressBar} from '../../ProgressBar';
 
@@ -35,7 +35,7 @@ export const OnboardingProgress = ({progress}: IOnboardingProgress) => {
   return (
     <Box
       alignItems="center"
-      mt="n"
+      mt={isAndroid ? 'o' : 'n'}
       style={{marginHorizontal: horizontalScale(30)}}>
       <ProgressBar
         containerHeight={7}

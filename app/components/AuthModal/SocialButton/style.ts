@@ -3,8 +3,8 @@ import {colors} from '../../../theme';
 import {verticalScale} from '../../../utils';
 
 export const $skottie: ViewStyle = {
-  height: 50,
-  width: 50,
+  height: 80,
+  width: 80,
 };
 export const $button: ViewStyle = {
   height: verticalScale(55),

@@ -53,7 +53,11 @@ export const AuthModal = ({bottomSheetModalRef}: AuthModalProps) => {
       backdropComponent={BottomSheetBackdrop}
       snapPoints={snapPoints}>
       <BottomSheetView style={[$bottomSheetContainer]}>
-        <Box justifyContent="center" gap="s" style={$buttonGroup}>
+        <Box
+          pointerEvents={auth ? 'none' : 'auto'}
+          justifyContent="center"
+          gap="s"
+          style={$buttonGroup}>
           <SocialButton
             type="google"
             onPress={continueWithGoogle}
