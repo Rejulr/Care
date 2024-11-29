@@ -28,6 +28,7 @@ export const localStore = create<StoreState>()(
       ...createUserSlices(...args),
       ...createAppointmentSlices(...args),
     }),
+
     {
       name: 'wellbeing_Doctor',
       storage: createJSONStorage(() => zustandStorage),

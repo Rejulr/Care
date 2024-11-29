@@ -3,6 +3,7 @@ import {StyleProp, ViewStyle} from 'react-native';
 import {RectButtonProps} from 'react-native-gesture-handler';
 import {LinearTransition} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {colors} from '../../theme';
 import {isAndroid} from '../../utils';
 import {AnimatedBox, Box} from '../Box';
 import {Button} from '../Button';
@@ -42,6 +43,7 @@ export const Screen = ({
         styles,
         {
           paddingTop: PADDING_TOP,
+          backgroundColor: colors.white,
         },
       ]}>
       <Box

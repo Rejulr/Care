@@ -1,10 +1,6 @@
 import React, {ReactNode} from 'react';
-import {
-  Gesture,
-  GestureDetector,
-  RectButton,
-  RectButtonProps,
-} from 'react-native-gesture-handler';
+import {Pressable} from 'react-native';
+import {RectButtonProps} from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -26,7 +22,7 @@ type ButtonProps = RectButtonProps & {
 
   isLoading?: boolean;
 };
-export const AnimatedButton = Animated.createAnimatedComponent(RectButton);
+export const AnimatedButton = Animated.createAnimatedComponent(Pressable);
 
 export const Button = ({
   onPress,
@@ -36,64 +32,62 @@ export const Button = ({
   label,
   ...props
 }: ButtonProps) => {
-  const scaleDown = useSharedValue<boolean>(false);
+  const scaleDown = useSharedValue<number>(1);
 
   const isButtonEnabled =
     props.enabled === undefined ? false : props.enabled ? false : true;
-  const longPressGesture = Gesture.LongPress()
-    .onBegin(() => {
-      scaleDown.value = true;
-    })
-    .onFinalize(() => {
-      scaleDown.value = false;
-    });
+
+  const onPressIn = () => {
+    scaleDown.value = 0.9;
+  };
+  const onPressOut = () => {
+    scaleDown.value = 1;
+  };
   const buttonStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          scale: scaleDown.value
-            ? withTiming(0.9, {duration: 250})
-            : withTiming(1, {duration: 250}),
+          scale: withTiming(scaleDown.value, {duration: 250}),
         },
       ],
-      opacity:
-        scaleDown.value || isButtonEnabled
-          ? withTiming(isButtonEnabled ? 0.2 : 0.9, {duration: 250})
-          : withTiming(1, {duration: 250}),
+
+      opacity: isButtonEnabled
+        ? withTiming(0.2, {duration: 250})
+        : withTiming(scaleDown.value, {duration: 250}),
 
       borderRadius: spacing.borderRadius,
     };
   });
   return (
     <Box flex={1} style={$buttonContainer} overflow="hidden">
-      <GestureDetector gesture={longPressGesture}>
-        <AnimatedButton
-          {...props}
-          style={[
-            $button,
-            buttonStyle,
-            useSecondary && {backgroundColor: colors.blueDark},
-          ]}
-          onPress={onPress}>
-          {isLoading ? (
-            <Skottie
-              style={$skottie}
-              resizeMode="cover"
-              source={Loader}
-              autoPlay={true}
-              loop={true}
-            />
-          ) : (
-            <Box flexDirection="row" gap="n" alignItems="center">
-              {leftIcon}
+      <AnimatedButton
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        {...props}
+        style={[
+          $button,
+          buttonStyle,
+          useSecondary && {backgroundColor: colors.blueDark},
+        ]}
+        onPress={onPress}>
+        {isLoading ? (
+          <Skottie
+            style={$skottie}
+            resizeMode="cover"
+            source={Loader}
+            autoPlay={true}
+            loop={true}
+          />
+        ) : (
+          <Box flexDirection="row" gap="n" alignItems="center">
+            {leftIcon}
 
-              <Text style={$label} variant="buttonLabel">
-                {label}
-              </Text>
-            </Box>
-          )}
-        </AnimatedButton>
-      </GestureDetector>
+            <Text style={$label} variant="buttonLabel">
+              {label}
+            </Text>
+          </Box>
+        )}
+      </AnimatedButton>
     </Box>
   );
 };

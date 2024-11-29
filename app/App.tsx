@@ -24,11 +24,9 @@ import {useUser} from './hooks';
 import {AppStack} from './navigators/AppStack';
 import socket from './services/socket';
 function App(): React.JSX.Element {
-  //fix specialty value
   const {uid: UID} = useUser();
   const navigationRef = createNavigationContainerRef<any>();
   const {isConnected} = useNetInfo();
-
   async function saveTokenToDatabase(token: string) {
     await firestore().collection('Users').doc(UID).update({
       fcmToken: token,
