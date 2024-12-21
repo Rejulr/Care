@@ -1,4 +1,4 @@
-![Group 218](https://github.com/user-attachments/assets/6d399e0a-4266-423e-a0d2-7c33ce0b77d1)
+![Group 218 (1)](https://github.com/user-attachments/assets/7c871204-5660-42c6-ace5-efd0acc78ab8)
 
 ## Features✨
 * **Coordinate Appointments**: Efficiently manage your schedule and stay on top of patient appointments seamlessly.
