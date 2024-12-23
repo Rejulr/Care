@@ -5,6 +5,9 @@
 * **Track Earnings**: Stay informed about your financials with detailed earning reports and insights.
 * **Stay Connected**: Connect with patients anytime through secure messaging and video calls.
 
+> [!IMPORTANT]
+> After completing the signup and verification process, Doctors' profiles are not automatically approved. Instead, they undergo a review by [Wellbeing Verify](https://github.com/abumubaarak/wellbeingverify), where the provided information is thoroughly validated before the profile is accepted. Once the profile is accepted, doctors receive a notification confirming the approval 🎉.
+
  ## Tech Stack 🔨
  - React Native(New Architecture)
  - TypeScript
@@ -41,4 +44,6 @@
    - Socket.IO
    
  ## Screenshot 📸
-![Group 219](https://github.com/user-attachments/assets/1f2e24ad-c946-4600-87cf-d235fba0e7a8)
+![Preview 1](https://github.com/user-attachments/assets/9beb19ff-0344-458a-8acf-99d9e835bcea)
+![Preview 2](https://github.com/user-attachments/assets/472cd496-ae9e-437a-8ce9-d4cb8843cc46)
+![Preview 3](https://github.com/user-attachments/assets/5c399350-3acf-4863-abcf-5c26bec42836)
