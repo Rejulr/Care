@@ -1,6 +1,6 @@
 import {ViewStyle} from 'react-native';
 import {colors} from '../../../theme';
-import { spacing } from '../../../theme/spacing';
+import {spacing} from '../../../theme/spacing';
 
 export const $dropDown: ViewStyle = {
   marginTop: 10,
@@ -10,3 +10,4 @@ export const $dropDown: ViewStyle = {
   borderColor: colors.inputStroke,
   padding: 12,
 };
+export const $pressable: ViewStyle = {flex: 1};

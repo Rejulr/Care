@@ -43,8 +43,8 @@ export const Screen = ({
         styles,
         {
           paddingTop: PADDING_TOP,
-          backgroundColor: colors.white,
         },
+        useDefault && {backgroundColor: colors.white},
       ]}>
       <Box
         style={[useDefault && $default, useAlignment && $container, subStyles]}

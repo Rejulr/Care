@@ -27,7 +27,6 @@ export const InputField = ({
       <TextInput
         {...props}
         style={[$textInput, isTextArea && $textArea]}
-        keyboardType="default"
         onChangeText={onChange}
         value={value}
       />
