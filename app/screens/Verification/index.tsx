@@ -8,8 +8,18 @@ import {Document, PersonalInformation, Specialty} from '../../layout';
 import {StackNavigation} from '../../navigators';
 
 export const Verification = () => {
-  const {gender, fullName, email, dob, bio, specialty, selfie, qualification} =
-    localStore();
+  const {
+    gender,
+    fullName,
+    email,
+    dob,
+    bio,
+    specialty,
+    selfie,
+    qualification,
+    yoe,
+    country,
+  } = localStore();
   const {uploadDocument, uploadError} = useUpload();
   const {verification, hasReceived, error} = useFirestore();
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -17,7 +27,9 @@ export const Verification = () => {
   const navigation = useNavigation<StackNavigation>();
 
   const isPersonalInfoValid =
-    fullName && gender && dob && email && bio ? true : false;
+    fullName && gender && dob && email && bio && yoe && country.name
+      ? true
+      : false;
   const isSpecialtyInfoValid = specialty.length > 0;
   const isIdentityInfoValid = selfie && qualification ? true : false;
 
