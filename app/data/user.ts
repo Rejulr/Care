@@ -2,7 +2,7 @@ import {CountryCode} from 'react-native-country-picker-modal';
 import {StateCreator} from 'zustand';
 
 type GENDER_TYPE = 'Male' | 'Female';
-type COUNTRY = {
+export type COUNTRY = {
   name?: string;
   code?: CountryCode;
 };
