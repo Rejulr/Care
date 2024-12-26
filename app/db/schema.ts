@@ -1,7 +1,7 @@
 import {appSchema, tableSchema} from '@nozbe/watermelondb';
 
 export const schema = appSchema({
-  version: 153182,
+  version: 2,
   tables: [
     //when you back just deploy  and test for both apps
     tableSchema({

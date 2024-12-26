@@ -22,9 +22,13 @@ export const useFirestore = () => {
     addVerificationStatus,
     fee,
     dateRange,
+    country,
+    yoe,
     customRange,
     workingHours,
   } = localStore();
+
+  const countryName = country.name;
   const [data, setData] = useState<FirebaseFirestoreTypes.DocumentData[]>([]);
 
   const verification = async (qualification: string, selfie: string) => {
@@ -36,6 +40,8 @@ export const useFirestore = () => {
           dob,
           fullName,
           gender,
+          countryName,
+          yoe,
           qualification,
           selfie,
           specialty,

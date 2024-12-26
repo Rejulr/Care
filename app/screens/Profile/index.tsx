@@ -6,17 +6,17 @@ import {Header} from '../../components/Verification';
 import {localStore, storage} from '../../data';
 import {colors} from '../../theme';
 import {spacing} from '../../theme/spacing';
-import {moderateScale} from '../../utils';
+import {formatDate, moderateScale} from '../../utils';
 
 export const Profile = () => {
   //specialty, gender,
-  const {fullName, email} = localStore();
+  const {fullName, email,dob} = localStore();
   const signOut = async () => {
     await auth().signOut();
     storage.clearAll();
   };
   return (
-    <Screen styles={{backgroundColor: colors.grey}} useDefault>
+    <Screen styles={{backgroundColor: colors.grey}} useDefault={false}>
       <Box backgroundColor="grey" flex={1} paddingHorizontal="l">
         <Box mt="l">
           <Header addDefault={false} title="Profile" summary=" " />
@@ -72,7 +72,7 @@ export const Profile = () => {
                   variant="medium">
                   DOB
                 </Text>
-                <Text adjustsFontSizeToFit>20 July, 2024</Text>
+                <Text adjustsFontSizeToFit>{formatDate(dob)}</Text>
               </Box>
               <Box marginVertical="m" height={0.7} backgroundColor="grey" />
 
